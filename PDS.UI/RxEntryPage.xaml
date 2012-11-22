@@ -1,0 +1,151 @@
+﻿<Page x:Class="PDS.UI.RxEntryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:metro="http://schemas.codeplex.com/elysium/theme"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d"      
+	  Title="RxEntryPage"
+      FontSize="14">
+
+    <GroupBox Header="PRESCRIPTION ENTRY" Style="{StaticResource PDSGroupBoxStyle}">
+    <Grid x:Name="rxEntryMainGrid">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>         
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        
+        
+        <GroupBox Header="Patient Details" Grid.Row="1" Margin="5" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                    
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource LeftAlignStyle}">First Name</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource LeftAlignStyle}">Last Name</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource LeftAlignStyle}">Phone#</TextBlock>
+
+                <TextBox Grid.Row="1" Grid.Column="0" x:Name="txtfirstName" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtlastName" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="2" x:Name="txtPhoneNumber" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+               
+                <Button Grid.Row="1" Width="Auto" Grid.Column="3" x:Name="btnPatientSearch"
+                        Style="{StaticResource PDSSearchButtonStyle}"   Click="btnPatientSearch_Click" >
+                    <Image Source="Images/search.png" />
+                </Button>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LeftAlignStyle}">Gender</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource LeftAlignStyle}">DOB</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource LeftAlignStyle}">Address</TextBlock>
+
+                <TextBox Grid.Row="3" IsReadOnly="True" IsEnabled="False" Grid.Column="0" x:Name="txtGender" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <TextBox Grid.Row="3"  IsReadOnly="True" IsEnabled="False" Grid.Column="1" x:Name="txtDOB" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <TextBox Grid.Row="3" IsReadOnly="True" IsEnabled="False" Grid.Column="2"  x:Name="txtAddres" Grid.ColumnSpan="2" TextWrapping="NoWrap"  Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+
+
+            </Grid>            
+        </GroupBox>
+
+        <GroupBox Header="Product and Rx Details" Grid.Row="2" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>                    
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource LeftAlignStyle}">Drug Name</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource LeftAlignStyle}">NDC</TextBlock>
+
+                <TextBox Grid.Row="1" Grid.Column="0" x:Name="txtProductName" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtNDC" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <Button Grid.Row="1" Grid.Column="2" x:Name="btnProductSearch" 
+                         Style="{StaticResource PDSSearchButtonStyle}"   Click="btnProductSearch_Click" >
+                    <Image Source="Images/search.png"></Image>
+                </Button>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LeftAlignStyle}">Rx Writtent Date</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource LeftAlignStyle}">Written Qty</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource LeftAlignStyle}">Refills</TextBlock>
+                <DatePicker Grid.Row="3" Grid.Column="0" x:Name="txtWrittenDate" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"></DatePicker>
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtWrittenQty" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="2" x:Name="txtRefills" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+
+                <TextBlock Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="3" Style="{StaticResource LeftAlignStyle}">SIG</TextBlock>
+                <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="txtSig" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+
+            </Grid>
+
+        </GroupBox>
+
+        <GroupBox Header="Prescriber Details" Grid.Row="3" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource LeftAlignStyle}">First Name</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource LeftAlignStyle}">Last Name</TextBlock>
+
+                <TextBox Grid.Row="1" Grid.Column="0" x:Name="txtPscbfirstName" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPscblastName" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <Button Grid.Row="1" Grid.Column="2" x:Name="btnPscbSearch" 
+                         Style="{StaticResource PDSSearchButtonStyle}"   Click="btnPscbSearch_Click" >
+                    <Image Source="Images/search.png"></Image></Button>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LeftAlignStyle}">DEA</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource LeftAlignStyle}">NPI</TextBlock>
+
+                <TextBox Grid.Row="3" IsReadOnly="True" IsEnabled="False" Grid.Column="0" x:Name="txtDEA" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <TextBox Grid.Row="3" IsReadOnly="True" IsEnabled="False" Grid.Column="1" x:Name="txtNPI" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+              
+            </Grid>
+        </GroupBox>
+
+
+        <StackPanel Grid.Row="5"  Style="{StaticResource PDSButtonStackPanelStyle}">
+
+
+          
+            <Button x:Name="btnSubmit" Click="btnSubmit_Click" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">Submit</Button>
+            <Button x:Name="btnCancel" Click="btnCancel_Click" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">Cancel</Button>
+        </StackPanel>
+
+    </Grid>
+    </GroupBox>
+</Page>

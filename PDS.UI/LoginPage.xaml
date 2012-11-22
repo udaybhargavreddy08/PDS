@@ -1,0 +1,51 @@
+﻿<Page x:Class="PDS.UI.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:metro="http://schemas.codeplex.com/elysium/theme"
+      xmlns:local="clr-namespace:PDS.UI;assembly="
+      mc:Ignorable="d" 
+      
+	Title="LoginPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Border Grid.Row="1" Grid.Column="1" Margin="10" BorderThickness="1" CornerRadius="5">
+            <Grid>                              
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock FontSize="18" TextAlignment="Center" Margin="5">LOGIN</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0"  Style="{StaticResource LeftAlignStyle}">USER NAME</TextBlock>
+                <TextBox  Grid.Row="2" Grid.Column="0"  x:Name="txtUserName" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" ></TextBox>
+
+                <TextBlock Grid.Row="3" Grid.Column="0"  Style="{StaticResource LeftAlignStyle}">PASSWORD</TextBlock>
+                <PasswordBox Grid.Row="4" Grid.Column="0" x:Name="txtPassword"    Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" ></PasswordBox>
+
+                <Button  Grid.Row="5" Grid.Column="0" 
+                         Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
+                         Click="Button_Click">Login</Button>
+                
+            </Grid>
+
+        </Border>
+    </Grid>
+</Page>

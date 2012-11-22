@@ -1,0 +1,152 @@
+﻿<Page x:Class="PDS.UI.RPHVerificationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:metro="http://schemas.codeplex.com/elysium/theme"
+      mc:Ignorable="d" 
+      x:Name="thisControl"
+      FontSize="14"
+     
+	Title="RPHVerificationPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>            
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock>PHARMACIST VERIFICATION PAGE</TextBlock>
+        <Grid  Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <GroupBox Header="Patient Information" Grid.Row="0" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>                        
+                    </Grid.ColumnDefinitions>  
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0">Name</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0">DOB</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0">Age</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0">Gender</TextBlock>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="1"></TextBlock>
+
+                    <ToggleButton  Grid.Row="4" Grid.Column="1" x:Name="patientVerify"
+                              Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
+                               IsChecked="{Binding ElementName=thisControl,Path=IsPatientInfoVerified}" >Verify</ToggleButton>
+                </Grid>
+            </GroupBox>
+            
+            <GroupBox Header="Product Information" Grid.Row="0" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0">Drug Name</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0">NDC</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1"></TextBlock>
+                    </Grid>
+                    
+                    <Image Grid.Row="0" Grid.Column="1" Source="./Images/amoxicillin875mgtab-ran.jpg" ></Image>
+                    <ToggleButton Grid.Row="4" Grid.Column="1" x:Name="prodVerify" 
+                            Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
+                             IsChecked="{Binding ElementName=thisControl,Path=IsDrugVerified}">Verify</ToggleButton>
+                </Grid>
+            </GroupBox>
+            
+            <GroupBox Header="Prescriber Information" Grid.Row="1" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0">Name</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0">DEA</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0">NPI</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0">Address</TextBlock>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="1"></TextBlock>
+
+                    <ToggleButton Grid.Row="4" Grid.Column="1" x:Name="btnPrescriberVerify"
+                                   Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
+                                   IsChecked="{Binding ElementName=thisControl,Path=IsPrescriberVerified}">Verify</ToggleButton>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Rx Information" Grid.Row="1" Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <ToggleButton Grid.Row="4" Grid.Column="1" x:Name="btnRxVerify" 
+                            Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
+                                  IsChecked="{Binding ElementName=thisControl,Path=IsRxVerified}">Verify</ToggleButton>
+                </Grid>
+            </GroupBox>
+            
+        </Grid>
+        <StackPanel Grid.Row="3"  Style="{StaticResource PDSButtonStackPanelStyle}">
+            <Button x:Name="btnSubmit" Click="btnSubmit_Click" IsEnabled="False" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">Approve</Button>
+            <Button x:Name="btnCancel" Click="btnCancel_Click" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">Cancel</Button>
+            
+        </StackPanel>
+    </Grid>
+</Page>

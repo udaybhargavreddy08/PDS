@@ -1,0 +1,139 @@
+﻿<Application x:Class="PDS.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:metro="http://schemas.codeplex.com/elysium/theme"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Elysium.Theme;component/Themes/Generic.xaml"/>
+                <ResourceDictionary Source="Assets/Brushes.xaml" />
+                <ResourceDictionary Source="Assets/Fonts.xaml" />
+                <ResourceDictionary Source="Assets/PDSStyles.xaml" />
+                <!--<ResourceDictionary Source="Assets/Styles.xaml" />
+                <ResourceDictionary Source="Assets/SdkStyles.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+                <!--Bug in .Net 4: http://connect.microsoft.com/VisualStudio/feedback/details/555322/global-wpf-styles-are-not-shown-when-using-2-levels-of-references-->
+                <Style TargetType="{x:Type Window}"/>
+
+            <Style x:Key="RightAlignStyle"  TargetType="{x:Type TextBlock}" >
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="Margin" Value="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" />
+            </Style>
+
+            <Style x:Key="PDSWhiteForegroundStyle"  TargetType="{x:Type TextBlock}" >
+                <Setter Property="Foreground" Value="Blue" />
+                <Setter Property="Margin" Value="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" />
+            </Style>
+
+
+            <Style x:Key="PDSTextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxBaseStyle}">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" />
+            </Style>
+
+            <Style x:Key="PDSButtonStackPanelStyle" TargetType="{x:Type StackPanel}" >
+                
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="Margin" Value="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" />
+                
+            </Style>
+
+           
+            <Style x:Key="PDSComboBoxStyle"  TargetType="{x:Type ComboBox}" >
+                <Setter Property="Margin" Value="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" />
+            </Style>
+
+            <Style x:Key="LeftAlignStyle"  TargetType="{x:Type TextBlock}" >
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="FontSize" Value="14" />               
+                <Setter Property="Margin" Value="5,0,0,0" />
+            </Style>
+
+            <Style x:Key="PDSGroupBoxStyle" TargetType="{x:Type GroupBox}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GroupBox">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" BorderThickness="1" BorderBrush="#25A0DA"  Background="#25A0DA">
+                                    <Label Foreground="White">
+                                        <ContentPresenter Margin="1" ContentSource="Header" RecognizesAccessKey="True" />
+                                    </Label>
+                                </Border>
+
+                                <Border Grid.Row="1"  BorderThickness="1,0,1,1" BorderBrush="#25A0DA">
+                                    <ContentPresenter Margin="1" />
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="{x:Type Frame}">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Frame}">
+                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}" Padding="{TemplateBinding Control.Padding}" BorderBrush="{TemplateBinding Border.BorderBrush}" Background="{TemplateBinding Panel.Background}">
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" Name="PART_FrameCP" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+           
+             <Style x:Key="PDSSearchButtonStyle"  TargetType="{x:Type Button}" >
+                <Setter Property="Margin" Value="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" />
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="Width" Value="30"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border 
+          x:Name="Border"  
+          CornerRadius="2" 
+          BorderThickness="0"          
+          >
+                                <ContentPresenter 
+            Margin="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            RecognizesAccessKey="True"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsKeyboardFocused" Value="true">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#202020" />
+                                </Trigger>
+                                <Trigger Property="IsDefaulted" Value="true">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#202020" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="#808080" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="#E0E0E0" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#606060" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA" />
+                                    <Setter Property="Foreground" Value="#888888"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="PDS.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:metro="http://schemas.codeplex.com/elysium/theme"
+        Title="MainWindow" Height="650" Width="850" WindowStyle="ToolWindow"
+       
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Center"  TextAlignment="Center" FontSize="20" Foreground="Green">PHARMACY DISPENSING SYSTEM</TextBlock>
+        </StackPanel>
+        <Frame x:Name="mainFrame"  Margin="10" Grid.Row="1">
+            
+            
+        </Frame>        
+    </Grid>
+</Window>

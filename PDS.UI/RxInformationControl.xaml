@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="PDS.UI.RxInformationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:metro="http://schemas.codeplex.com/elysium/theme"
+             mc:Ignorable="d" FontSize="14">
+    <GroupBox Header="PRESCRIPTION INFORMATION">
+
+        <Grid  Background="WhiteSmoke" ShowGridLines="False" >
+                <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>                    
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Rx #:</TextBlock>
+               <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource PDSWhiteForegroundStyle}">98089808908</TextBlock>
+
+               <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource RightAlignStyle}">Written Date:</TextBlock>
+              <TextBlock Grid.Row="0" Grid.Column="4"  Style="{StaticResource PDSWhiteForegroundStyle}">20/12/2012</TextBlock>
+
+
+               <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Patient Name:</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+           
+                <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Gender:</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
+          
+                <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource RightAlignStyle}">Age:</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Address:</TextBlock>
+                <TextBlock Grid.Row="3"  Grid.Column="1"  Grid.ColumnSpan="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+
+            
+                <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Drug:</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="1"  Grid.ColumnSpan="4"  Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+            
+
+                <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Qty:</TextBlock>
+                 <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+
+                <TextBlock Grid.Row="5" Grid.Column="3" Style="{StaticResource RightAlignStyle}">Refills:</TextBlock>
+                 <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+
+              
+            </Grid>
+       
+    </GroupBox>
+</UserControl>

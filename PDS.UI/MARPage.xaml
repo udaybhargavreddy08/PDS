@@ -1,0 +1,52 @@
+﻿<Page x:Class="PDS.UI.MARPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PDS.UI;assembly="
+         xmlns:metro="http://schemas.codeplex.com/elysium/theme"
+      mc:Ignorable="d" 
+   
+	Title="MARPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock FontSize="18" Margin="5">MANAGE 3RD PARTY REJECTS</TextBlock>
+        
+      
+         <Grid Grid.Row="1" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        
+                    </Grid.RowDefinitions>
+                <local:RxInformationControl  Grid.Row="0"></local:RxInformationControl>
+                    <GroupBox Grid.Row="1"  Header="REJECTION REASONS" Margin="5">
+                        
+                    </GroupBox>
+
+                    <GroupBox Grid.Row="2" Header="COST INFORMATION" Margin="5">
+                        
+                    </GroupBox>
+
+                    <GroupBox Grid.Row="3" Header="BILLING DETAILS" Margin="5">
+                        
+                    </GroupBox>
+                </Grid>
+           
+
+        <StackPanel Grid.Row="3" Style="{StaticResource PDSButtonStackPanelStyle}" >
+            <Button x:Name="btnResubmit" Click="btnResubmit_Click" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">Re Submit</Button>
+            <Button x:Name="btnCancel"  Click="btnCancel_Click" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">Cancel</Button>
+        </StackPanel>
+
+    </Grid>
+</Page>
