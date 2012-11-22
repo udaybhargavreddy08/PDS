@@ -58,7 +58,7 @@ namespace PDS.UI
                 txtPhoneNumber.Text = selectedPatient.PhoneNumber;
                 txtAddres.Text = selectedPatient.Address.ToString();
                 txtDOB.Text = selectedPatient.DOB != null ?selectedPatient.DOB.ToShortDateString() : string.Empty;
-                txtGender.Text = selectedPatient.Gender;
+               // txtGender.Text = selectedPatient.Gender;
             }
         }
 

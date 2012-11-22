@@ -22,6 +22,7 @@ namespace PDS.UI
     public partial class PatientPage : PageFunction<PatientViewModel>
 
     {
+        string errorMessage = string.Empty;
         public PatientPage()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace PDS.UI
 
         void PatientPage_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            brdMessages.Visibility = Visibility.Hidden;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -41,15 +42,40 @@ namespace PDS.UI
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            brdMessages.Visibility = Visibility.Hidden;
 
-            Patient patient = new Patient();
+            if (ValidatePage())
+            {
 
-            MapPatientData(patient);
-            
-            new PatientManager().Save(patient);
-                       
-            //Save and go back
-            NavigationService.GoBack();
+                Patient patient = new Patient();
+
+                MapPatientData(patient);
+
+                new PatientManager().Save(patient);
+
+                //Save and go back
+                NavigationService.GoBack();
+            }
+            else
+            {
+                brdMessages.Visibility = Visibility.Visible;
+                txtErrorMessages.Text = errorMessage;
+
+            }
+        }
+
+        private bool ValidatePage()
+        {
+            errorMessage = string.Empty;
+            bool isInputValid = true;
+
+            if (!txtDOB.SelectedDate.HasValue)
+            {
+                errorMessage = errorMessage + " " + "Date of Birth Required";
+                isInputValid = false;
+            }
+
+            return isInputValid;
         }
 
         private void MapPatientData(Patient patient)
@@ -59,7 +85,8 @@ namespace PDS.UI
             patient.MiddleName = txtMiddleName.Text;
             patient.DOB = txtDOB.SelectedDate.Value;
             patient.PhoneNumber = txtPhone.Text;
-            
+            patient.Gender = (cmbGender.SelectedItem as ComboBoxItem).Content as string;
+
             if(rdbCash.IsChecked.HasValue && rdbCash.IsChecked.Value)
             {
                 patient.IsBillingMethodCash = true;
@@ -68,16 +95,16 @@ namespace PDS.UI
             {
                 patient.IsBillingMethodCash = false;
             }
-
-
+            
             var patientAddress = new Address();
            
             patientAddress.Address1 = txtAddress1.Text;
             patientAddress.Address2 = txtAddress2.Text;
             patientAddress.City = txtCity.Text;
-            patientAddress.State = cmbState.SelectedValue.ToString();
+            patientAddress.State = (cmbState.SelectedItem as ComboBoxItem).Content as string;
 
             patient.Address = patientAddress;
+
 
         }
 

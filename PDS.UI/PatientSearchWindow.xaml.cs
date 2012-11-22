@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PDS.DomainModel;
+using PDS.BusinessLayer;
 
 namespace PDS.UI
 {
@@ -66,13 +67,16 @@ namespace PDS.UI
 
         private void PerformSearch()
         {
-            var patients = new List<Patient>() {
-                                               new Patient{ FirstName= "Uday", LastName="Reddy", MiddleName="Bhargav", DOB = DateTime.Now, PhoneNumber = "6127479973" },
-                                               new Patient{ FirstName= "Teja", LastName="Bhimavarapu", MiddleName="Krishna", DOB = DateTime.Now, PhoneNumber = "6127479973", Address= new Address{ Address1="255 W. 96th Street", Address2="Apt# 3D", City="Bloomington", State="MN", ZipCode="55420" }}
 
-                                                };
+            var searchResults = new SearchManager().SearchPatients(txtfirstName.Text, txtlastName.Text, txtPhone.Text);
+            
+            //var patients = new List<Patient>() {
+            //                                   new Patient{ FirstName= "Uday", LastName="Reddy", MiddleName="Bhargav", DOB = DateTime.Now, PhoneNumber = "6127479973" },
+            //                                   new Patient{ FirstName= "Teja", LastName="Bhimavarapu", MiddleName="Krishna", DOB = DateTime.Now, PhoneNumber = "6127479973", Address= new Address{ Address1="255 W. 96th Street", Address2="Apt# 3D", City="Bloomington", State="MN", ZipCode="55420" }}
 
-            dgSrchResults.ItemsSource = patients;
+            //                                    };
+
+            dgSrchResults.ItemsSource = searchResults;
         }
     }
 }

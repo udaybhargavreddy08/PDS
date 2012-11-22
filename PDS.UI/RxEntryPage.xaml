@@ -51,13 +51,13 @@
                     <Image Source="Images/search.png" />
                 </Button>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LeftAlignStyle}">Gender</TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource LeftAlignStyle}">DOB</TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource LeftAlignStyle}">Address</TextBlock>
+                <!--<TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LeftAlignStyle}">Gender</TextBlock>-->
+                <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource LeftAlignStyle}">DOB</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource LeftAlignStyle}">Address</TextBlock>
 
-                <TextBox Grid.Row="3" IsReadOnly="True" IsEnabled="False" Grid.Column="0" x:Name="txtGender" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
-                <TextBox Grid.Row="3"  IsReadOnly="True" IsEnabled="False" Grid.Column="1" x:Name="txtDOB" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
-                <TextBox Grid.Row="3" IsReadOnly="True" IsEnabled="False" Grid.Column="2"  x:Name="txtAddres" Grid.ColumnSpan="2" TextWrapping="NoWrap"  Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <!--<TextBox Grid.Row="3" IsReadOnly="True" IsEnabled="False" Grid.Column="0" x:Name="txtGender" Style="{StaticResource PDSTextBoxStyle}"></TextBox>-->
+                <TextBox Grid.Row="3"  IsReadOnly="True" IsEnabled="False" Grid.Column="0" x:Name="txtDOB" Style="{StaticResource PDSTextBoxStyle}"></TextBox>
+                <TextBox Grid.Row="3" IsReadOnly="True" IsEnabled="False" Grid.Column="1"  x:Name="txtAddres" Grid.ColumnSpan="3" TextWrapping="NoWrap"  Style="{StaticResource PDSTextBoxStyle}"></TextBox>
 
 
             </Grid>            

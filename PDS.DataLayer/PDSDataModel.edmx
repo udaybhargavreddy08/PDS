@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PDS.DataLayer.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="PDSDataLayerStoreContainer">
+          <EntitySet Name="PDSFill" EntityType="PDS.DataLayer.Store.PDSFill" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PDSPatient" EntityType="PDS.DataLayer.Store.PDSPatient" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PDSPrescriber" EntityType="PDS.DataLayer.Store.PDSPrescriber" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PDSProduct" EntityType="PDS.DataLayer.Store.PDSProduct" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PDSQueueStates" EntityType="PDS.DataLayer.Store.PDSQueueStates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PDSRoles" EntityType="PDS.DataLayer.Store.PDSRoles" store:Type="Tables" store:Schema="dbo" store:Name="PDSRoles">
+            <DefiningQuery>SELECT 
+      [PDSRoles].[ID] AS [ID], 
+      [PDSRoles].[Name] AS [Name], 
+      [PDSRoles].[Description] AS [Description]
+      FROM [dbo].[PDSRoles] AS [PDSRoles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PDSRoleTaskMappings" EntityType="PDS.DataLayer.Store.PDSRoleTaskMappings" store:Type="Tables" store:Schema="dbo" store:Name="PDSRoleTaskMappings">
+            <DefiningQuery>SELECT 
+      [PDSRoleTaskMappings].[RoleID] AS [RoleID], 
+      [PDSRoleTaskMappings].[TaskID] AS [TaskID], 
+      [PDSRoleTaskMappings].[Description] AS [Description]
+      FROM [dbo].[PDSRoleTaskMappings] AS [PDSRoleTaskMappings]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PDSRx" EntityType="PDS.DataLayer.Store.PDSRx" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PDSTasks" EntityType="PDS.DataLayer.Store.PDSTasks" store:Type="Tables" store:Schema="dbo" store:Name="PDSTasks">
+            <DefiningQuery>SELECT 
+      [PDSTasks].[ID] AS [ID], 
+      [PDSTasks].[TaskName] AS [TaskName], 
+      [PDSTasks].[Description] AS [Description]
+      FROM [dbo].[PDSTasks] AS [PDSTasks]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PDSUsers" EntityType="PDS.DataLayer.Store.PDSUsers" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="PDSFill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WrittenQty" Type="int" />
+          <Property Name="DispensedQty" Type="int" />
+          <Property Name="WrittenDate" Type="datetime" />
+          <Property Name="DispensedDate" Type="datetime" />
+          <Property Name="IsSold" Type="bit" Nullable="false" />
+          <Property Name="IsDueApproved" Type="bit" Nullable="false" />
+          <Property Name="IsAdjudicated" Type="bit" Nullable="false" />
+          <Property Name="IsLabelPrinted" Type="bit" Nullable="false" />
+          <Property Name="IsRPHVerified" Type="bit" Nullable="false" />
+          <Property Name="RxID" Type="int" Nullable="false" />
+          <Property Name="State" Type="int" />
+        </EntityType>
+        <EntityType Name="PDSPatient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="LastName" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="MiddleName" Type="nchar" MaxLength="20" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="Email" Type="nchar" MaxLength="20" />
+          <Property Name="IsBillingMethodCash" Type="bit" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="Address1" Type="nchar" MaxLength="50" />
+          <Property Name="Address2" Type="nchar" MaxLength="50" />
+          <Property Name="City" Type="nchar" MaxLength="20" />
+          <Property Name="State" Type="nchar" MaxLength="10" />
+          <Property Name="ZIP" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PDSPrescriber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="nchar" MaxLength="20" />
+          <Property Name="LastName" Type="nchar" MaxLength="20" />
+          <Property Name="NPI" Type="nchar" MaxLength="10" />
+          <Property Name="DEA" Type="nchar" MaxLength="10" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PDSProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nchar" MaxLength="20" />
+          <Property Name="NDC" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Description" Type="nchar" MaxLength="50" />
+          <Property Name="Image" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PDSQueueStates">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="State" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="State" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Description" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PDS.dbo.PDSRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="PDSRoles">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Name="ID" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="nchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PDS.dbo.PDSRoleTaskMappings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="PDSRoleTaskMappings">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="TaskID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PDSRx">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WrittenDate" Type="datetime" />
+          <Property Name="SIG" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpirationDate" Type="datetime" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="PrescriberID" Type="int" Nullable="false" />
+          <Property Name="RefillsAllowed" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PDS.dbo.PDSTasks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="PDSTasks">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="TaskName" />
+          </Key>
+          <Property Name="ID" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="TaskName" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Description" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PDSUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="LastName" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="UserID" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="RoleID" Type="int" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PDS.DataLayer" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="PDSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PDSFills" EntityType="PDS.DataLayer.PDSFill" />
+          <EntitySet Name="PDSPatients" EntityType="PDS.DataLayer.PDSPatient" />
+          <EntitySet Name="PDSPrescribers" EntityType="PDS.DataLayer.PDSPrescriber" />
+          <EntitySet Name="PDSProducts" EntityType="PDS.DataLayer.PDSProduct" />
+          <EntitySet Name="PDSQueueStates" EntityType="PDS.DataLayer.PDSQueueState" />
+          <EntitySet Name="PDSRoles" EntityType="PDS.DataLayer.PDSRole" />
+          <EntitySet Name="PDSRoleTaskMappings" EntityType="PDS.DataLayer.PDSRoleTaskMapping" />
+          <EntitySet Name="PDSRxes" EntityType="PDS.DataLayer.PDSRx" />
+          <EntitySet Name="PDSTasks" EntityType="PDS.DataLayer.PDSTask" />
+          <EntitySet Name="PDSUsers" EntityType="PDS.DataLayer.PDSUser" />
+        </EntityContainer>
+        <EntityType Name="PDSFill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WrittenQty" Type="Int32" />
+          <Property Name="DispensedQty" Type="Int32" />
+          <Property Name="WrittenDate" Type="DateTime" />
+          <Property Name="DispensedDate" Type="DateTime" />
+          <Property Name="IsSold" Type="Boolean" Nullable="false" />
+          <Property Name="IsDueApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsAdjudicated" Type="Boolean" Nullable="false" />
+          <Property Name="IsLabelPrinted" Type="Boolean" Nullable="false" />
+          <Property Name="IsRPHVerified" Type="Boolean" Nullable="false" />
+          <Property Name="RxID" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PDSPatient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Phone" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Email" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="IsBillingMethodCash" Type="Boolean" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="City" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="State" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="ZIP" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="PDSPrescriber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="LastName" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="NPI" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="DEA" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Address" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PDSProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="NDC" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="Image" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="PDSQueueState">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="State" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Description" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="PDSRole">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Name" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="PDSRoleTaskMapping">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="TaskID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="PDSRx">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WrittenDate" Type="DateTime" />
+          <Property Name="SIG" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExpirationDate" Type="DateTime" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="PrescriberID" Type="Int32" Nullable="false" />
+          <Property Name="RefillsAllowed" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PDSTask">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="TaskName" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="TaskName" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="PDSUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RoleID" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PDSDataLayerStoreContainer" CdmEntityContainer="PDSEntities">
+          <EntitySetMapping Name="PDSFills">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSFill">
+              <MappingFragment StoreEntitySet="PDSFill">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WrittenQty" ColumnName="WrittenQty" />
+                <ScalarProperty Name="DispensedQty" ColumnName="DispensedQty" />
+                <ScalarProperty Name="WrittenDate" ColumnName="WrittenDate" />
+                <ScalarProperty Name="DispensedDate" ColumnName="DispensedDate" />
+                <ScalarProperty Name="IsSold" ColumnName="IsSold" />
+                <ScalarProperty Name="IsDueApproved" ColumnName="IsDueApproved" />
+                <ScalarProperty Name="IsAdjudicated" ColumnName="IsAdjudicated" />
+                <ScalarProperty Name="IsLabelPrinted" ColumnName="IsLabelPrinted" />
+                <ScalarProperty Name="IsRPHVerified" ColumnName="IsRPHVerified" />
+                <ScalarProperty Name="RxID" ColumnName="RxID" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDSPatients">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSPatient">
+              <MappingFragment StoreEntitySet="PDSPatient">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsBillingMethodCash" ColumnName="IsBillingMethodCash" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDSPrescribers">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSPrescriber">
+              <MappingFragment StoreEntitySet="PDSPrescriber">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="NPI" ColumnName="NPI" />
+                <ScalarProperty Name="DEA" ColumnName="DEA" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDSProducts">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSProduct">
+              <MappingFragment StoreEntitySet="PDSProduct">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NDC" ColumnName="NDC" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDSQueueStates">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSQueueState">
+              <MappingFragment StoreEntitySet="PDSQueueStates">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDSRoles">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSRole">
+              <MappingFragment StoreEntitySet="PDSRoles">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDSRoleTaskMappings">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSRoleTaskMapping">
+              <MappingFragment StoreEntitySet="PDSRoleTaskMappings">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDSRxes">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSRx">
+              <MappingFragment StoreEntitySet="PDSRx">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WrittenDate" ColumnName="WrittenDate" />
+                <ScalarProperty Name="SIG" ColumnName="SIG" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="PrescriberID" ColumnName="PrescriberID" />
+                <ScalarProperty Name="RefillsAllowed" ColumnName="RefillsAllowed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDSTasks">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSTask">
+              <MappingFragment StoreEntitySet="PDSTasks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDSUsers">
+            <EntityTypeMapping TypeName="PDS.DataLayer.PDSUser">
+              <MappingFragment StoreEntitySet="PDSUsers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="PDSDataModel">
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSFill" Width="1.5" PointX="0.75" PointY="0.75" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSPatient" Width="1.5" PointX="2.75" PointY="0.75" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSPrescriber" Width="1.5" PointX="4.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSProduct" Width="1.5" PointX="4.75" PointY="3.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSQueueState" Width="1.5" PointX="0.75" PointY="5.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSRole" Width="1.5" PointX="6.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSRoleTaskMapping" Width="1.5" PointX="2.75" PointY="6.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSRx" Width="1.5" PointX="6.75" PointY="3.75" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSTask" Width="1.5" PointX="4.75" PointY="7.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PDS.DataLayer.PDSUser" Width="1.5" PointX="6.75" PointY="7.75" Height="2.1725878906249996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -98,7 +98,7 @@ namespace PDS.DomainModel
 
         public override string ToString()
         {
-            return string.Format("{0} {1}, {2}, {3}, {4}",_Address1,_Address2,_City,_State,_ZipCode);
+            return string.Format("{0} {1}, {2}, {3}, {4}", _Address1.Trim(), _Address2.Trim(), _City.Trim(), _State.Trim(), _ZipCode.Trim());
         }
     }
 }

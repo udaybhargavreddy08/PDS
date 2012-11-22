@@ -37,13 +37,13 @@
         </Grid>
 
         <GroupBox Margin="5" Grid.Row="1" Header="Patient Search Results" Style="{StaticResource PDSGroupBoxStyle}">
-            <DataGrid x:Name="dgSrchResults" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid x:Name="dgSrchResults" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Last Name" Binding="{Binding Path=LastName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Phone#" Binding="{Binding Path=PhoneNumber}"></DataGridTextColumn>
                     <DataGridTextColumn Header="DOB" Binding="{Binding Path=DOB,StringFormat={}\{0:dd/MM/yyyy\}}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Gender" Binding="{Binding Path=Gender}"></DataGridTextColumn>
+                    <!--<DataGridTextColumn Header="Gender" Binding="{Binding Path=Gender}"></DataGridTextColumn>-->
                     <DataGridTextColumn Header="Address" Binding="{Binding Path=Address}" Width="*"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>

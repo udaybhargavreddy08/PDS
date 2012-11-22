@@ -22,8 +22,12 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock FontSize="18">PATIENT PROFILE</TextBlock>
-
+        
+        <Border x:Name="brdMessages" BorderThickness="1" BorderBrush="Red">
+        <TextBlock x:Name="txtErrorMessages" ></TextBlock>
+        </Border>
+        
+        
         <GroupBox Header="Patient Details" Grid.Row="1"  Margin="5">
             <Grid x:Name="patientDetialsGrid"  >
                 <Grid.RowDefinitions>

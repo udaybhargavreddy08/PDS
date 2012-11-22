@@ -44,9 +44,14 @@
     <Compile Include="PatientManager.cs" />
     <Compile Include="PrescriptionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchManager.cs" />
     <Compile Include="SecurityManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PDS.DataLayer\PDS.DataLayer.csproj">
+      <Project>{1F202FD8-0FF7-4D27-A9E6-97C13DF010C9}</Project>
+      <Name>PDS.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PDS.DomainModel\PDS.DomainModel.csproj">
       <Project>{98B9F9B2-3F1B-46C1-99FB-B43782A02E0B}</Project>
       <Name>PDS.DomainModel</Name>
