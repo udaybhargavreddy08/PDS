@@ -53,6 +53,7 @@
     </Compile>
     <Compile Include="PrescriptionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

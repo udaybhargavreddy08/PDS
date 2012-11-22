@@ -12,7 +12,7 @@ namespace PDS.BusinessLayer
         public Patient Load(int id)
         {
             //Load patinet and send 
-            return new Patient();
+            return new PatientRepository().Load(id);
         }
 
         public void Save(Patient patient)

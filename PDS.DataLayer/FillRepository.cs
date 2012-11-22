@@ -60,6 +60,15 @@ namespace PDS.DataLayer
 
             private void MapPDSFilltoFill(PDSFill pdsFill, Fill fill)
             {
+                fill.Id = pdsFill.ID;
+                try
+                {
+                    fill.Prescription = new PrescriptionRepository().Load(pdsFill.RxID);
+                }
+                catch
+                {
+                
+                }
                 fill.DispensedQty = pdsFill.DispensedQty.Value;
                 fill.DispensedDate = pdsFill.DispensedDate.Value;
                 fill.IsAdjudicated = pdsFill.IsAdjudicated;
@@ -87,7 +96,58 @@ namespace PDS.DataLayer
                 }
                 return fill;
             }
-            
+
+
+            public QueueSnapshot GetQueueSnapShot(int queueId)
+            {
+                QueueSnapshot snapShot = new QueueSnapshot();
+
+                List<PDSFill> selectedPDSFillList = new List<PDSFill>();
+
+
+                 var pdsQueues = new List<PDSQueue>()
+                            {
+                                new PDSQueue { StateId = (int)QueueStates.DUE, Name="DUE", Code="DUE"},
+                                new PDSQueue { StateId = (int)QueueStates.ThirdPartyRejects, Name="3RD PARTY REJECTS", Count = 12, Code="MAR"},
+                                new PDSQueue { StateId = (int)QueueStates.PrintLabel, Name="PRINT LABEL", Count = 2, Code="PLABEL"},
+                                new PDSQueue { StateId = (int)QueueStates.RPHVerificaiton, Name="RPH VERIFICATION", Count = 2, Code="RPH"},
+                                new PDSQueue { StateId = (int)QueueStates.WillCall, Name="WILL CALL", Count = 2, Code="WILLCALL"}
+                            };
+
+                 using (var context = new PDSEntities())
+                 {
+                     var groupedFills = context.PDSFills.GroupBy(p => p.State);
+
+                     foreach (var fillGroup in groupedFills)
+                     {
+                         int stateId = fillGroup.Key.Value;
+
+                         if (pdsQueues.Count(p => p.StateId == stateId) > 0)
+                         {
+                             pdsQueues.Single(p => p.StateId == stateId).Count = fillGroup.Count();
+                         }
+                         if (fillGroup.Key.Value == queueId)
+                         {
+                             selectedPDSFillList = fillGroup.ToList();
+                         }
+                     }
+                 }
+
+                List<Fill> selectedFills = new List<Fill>();
+                foreach (var pdsFill in selectedPDSFillList)
+                {
+                    var fill = new Fill();
+                    MapPDSFilltoFill(pdsFill, fill);
+                    selectedFills.Add(fill);
+
+                }
+
+                snapShot.Queues = pdsQueues;
+                snapShot.SelectedQueueFills = selectedFills;
+
+                return snapShot;
+
+            }
         
     }
 }

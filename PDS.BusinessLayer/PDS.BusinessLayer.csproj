@@ -45,6 +45,7 @@
     <Compile Include="PatientManager.cs" />
     <Compile Include="PrescriptionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueManager.cs" />
     <Compile Include="SearchManager.cs" />
     <Compile Include="SecurityManager.cs" />
   </ItemGroup>

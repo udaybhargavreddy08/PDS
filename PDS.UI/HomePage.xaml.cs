@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PDS.DomainModel;
+using PDS.BusinessLayer;
 
 
 namespace PDS.UI
@@ -30,26 +31,30 @@ namespace PDS.UI
 
         void HomePage_Loaded(object sender, RoutedEventArgs e)
         {
-            var queues = new List<PDSQueue>()
-                            {
-                                new PDSQueue { Name="DUE", Count = 20, Code="DUE"},
-                                new PDSQueue { Name="3RD PARTY REJECTS", Count = 12, Code="MAR"},
-                                new PDSQueue { Name="PRINT LABEL", Count = 2, Code="PLABEL"},
-                                new PDSQueue { Name="RPH VERIFICATION", Count = 2, Code="RPH"},
-                                new PDSQueue { Name="WILL CALL", Count = 2, Code="WILLCALL"}
-                            };
+            //var queues = new List<PDSQueue>()
+            //                {
+            //                    new PDSQueue {  Name="DUE", Count = 20, Code="DUE"},
+            //                    new PDSQueue { Name="3RD PARTY REJECTS", Count = 12, Code="MAR"},
+            //                    new PDSQueue { Name="PRINT LABEL", Count = 2, Code="PLABEL"},
+            //                    new PDSQueue { Name="RPH VERIFICATION", Count = 2, Code="RPH"},
+            //                    new PDSQueue { Name="WILL CALL", Count = 2, Code="WILLCALL"}
+            //                };
 
-            lstWorklists.ItemsSource = queues;
+            //lstWorklists.ItemsSource = queues;
 
-            lstWorklists.SelectedIndex = 0;
-            var queueItems = new List<Fill>()
-            {
-                new Fill{ Prescription = new Prescription{ Patient = new Patient{ FirstName = "Uday", LastName="Reddy"}, Prescriber = new Prescriber { FirstName= "Peter", LastName = "George"}, Product = new Product { Name = "Amoxicillin"}}},
-                new Fill{ Prescription = new Prescription{ Patient = new Patient{ FirstName = "Jan", LastName="Doe"}, Prescriber = new Prescriber { FirstName= "Peter", LastName = "George"}, Product = new Product { Name = "Prozac"}}},
-                new Fill{ Prescription = new Prescription{ Patient = new Patient{ FirstName = "Jan", LastName="Doe"}, Prescriber = new Prescriber { FirstName= "Peter", LastName = "George"}, Product = new Product { Name = "IBruphine"}}}
-            };
+            //lstWorklists.SelectedIndex = 0;
+            //var queueItems = new List<Fill>()
+            //{
+            //    new Fill{ Prescription = new Prescription{ Patient = new Patient{ FirstName = "Uday", LastName="Reddy"}, Prescriber = new Prescriber { FirstName= "Peter", LastName = "George"}, Product = new Product { Name = "Amoxicillin"}}},
+            //    new Fill{ Prescription = new Prescription{ Patient = new Patient{ FirstName = "Jan", LastName="Doe"}, Prescriber = new Prescriber { FirstName= "Peter", LastName = "George"}, Product = new Product { Name = "Prozac"}}},
+            //    new Fill{ Prescription = new Prescription{ Patient = new Patient{ FirstName = "Jan", LastName="Doe"}, Prescriber = new Prescriber { FirstName= "Peter", LastName = "George"}, Product = new Product { Name = "IBruphine"}}}
+            //};
 
-            dgQueueItems.ItemsSource = queueItems;
+
+           
+           var snapShot = new QueueManager().GetQueueInformation(1001);
+           lstWorklists.ItemsSource = snapShot.Queues;
+           dgQueueItems.ItemsSource = snapShot.SelectedQueueFills;
 
         }
 

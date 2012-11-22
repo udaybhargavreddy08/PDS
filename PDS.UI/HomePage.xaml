@@ -1,132 +1,132 @@
 ﻿<Page x:Class="PDS.UI.HomePage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-        xmlns:metro="http://schemas.codeplex.com/elysium/theme"
-      mc:Ignorable="d" FontSize="14"  
-      x:Name="thisControl"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+		xmlns:metro="http://schemas.codeplex.com/elysium/theme"
+	  mc:Ignorable="d" FontSize="14"  
+	  x:Name="thisControl"
 	Title="HomePage">
-    <Page.Resources>
-        <Style x:Key="RoundedLabelStyle" TargetType="Label">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Label">
-                        <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                Padding="{TemplateBinding Control.Padding}" 
-                                CornerRadius="4"
-                                BorderBrush="{TemplateBinding Border.BorderBrush}"
-                                Background="{TemplateBinding Panel.Background}" 
-                                SnapsToDevicePixels="True">
-                            <ContentPresenter RecognizesAccessKey="True" 
-                                              Content="{TemplateBinding ContentControl.Content}" 
-                                              ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
-                                              HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" 
-                                              VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
-                                              SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-            <Setter Property="Foreground" Value="White"/>
-        </Style>
+	<Page.Resources>
+		<Style x:Key="RoundedLabelStyle" TargetType="Label">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Label">
+						<Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+								Padding="{TemplateBinding Control.Padding}" 
+								CornerRadius="4"
+								BorderBrush="{TemplateBinding Border.BorderBrush}"
+								Background="{TemplateBinding Panel.Background}" 
+								SnapsToDevicePixels="True">
+							<ContentPresenter RecognizesAccessKey="True" 
+											  Content="{TemplateBinding ContentControl.Content}" 
+											  ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
+											  HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" 
+											  VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+											  SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
 
-        <DataTemplate x:Key="WorklistSummaryDataTemplate">
-            <Border>
-            <Grid Margin="0,5,5,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>                   
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Style="{StaticResource RoundedLabelStyle}" HorizontalContentAlignment="Center" Margin="0,0,5,0"  
-                       Grid.Column="0" Grid.Row="0" Width="25"
-                       Content="{Binding Path=Count}" />
-                <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=Name}">                  
-                </Label>
-              </Grid>
-            </Border>
+		<DataTemplate x:Key="WorklistSummaryDataTemplate">
+			<Border>
+			<Grid Margin="0,5,5,5">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>                   
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Label Style="{StaticResource RoundedLabelStyle}" HorizontalContentAlignment="Center" Margin="0,0,5,0"  
+					   Grid.Column="0" Grid.Row="0" Width="25"
+					   Content="{Binding Path=Count}" />
+				<Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=Name}">                  
+				</Label>
+			  </Grid>
+			</Border>
 
-            
-        </DataTemplate>
-    </Page.Resources>
+			
+		</DataTemplate>
+	</Page.Resources>
 
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="8*"></RowDefinition>
-        </Grid.RowDefinitions>
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="8*"></RowDefinition>
+		</Grid.RowDefinitions>
 
-        <Border CornerRadius="5" Margin="5" BorderThickness="1" BorderBrush="Green">
-            <Grid Margin="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>                                      
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                     
-                <StackPanel Orientation="Horizontal">
-                    <Button Grid.Column="1" Style="{StaticResource GreenButton}"   Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" 
-                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                        x:Name="btnNewFilling" Click="btnNewFilling_Click">New Filling</Button>
-                    <Button Grid.Column="1"  Style="{StaticResource GreenButton}"   Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
-                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                        x:Name="btnAddPatient" Click="btnAddPatient_Click">Add Patient</Button>
-                </StackPanel>
+		<Border CornerRadius="5" Margin="5" BorderThickness="1" BorderBrush="Green">
+			<Grid Margin="5">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition></ColumnDefinition>                                      
+					<ColumnDefinition></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+					 
+				<StackPanel Orientation="Horizontal">
+					<Button Grid.Column="1" Style="{StaticResource GreenButton}"   Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" 
+						 HorizontalAlignment="Center" VerticalAlignment="Center"
+						x:Name="btnNewFilling" Click="btnNewFilling_Click">New Filling</Button>
+					<Button Grid.Column="1"  Style="{StaticResource GreenButton}"   Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
+						 HorizontalAlignment="Center" VerticalAlignment="Center"
+						x:Name="btnAddPatient" Click="btnAddPatient_Click">Add Patient</Button>
+				</StackPanel>
 
-                <StackPanel  Grid.Column="1" Style="{StaticResource PDSButtonStackPanelStyle}">
-                    <Button x:Name="btnProcessQueue" Click="btnProcessQueue_Click" Content="Process DUE" Foreground="Black">
-                        <Button.Style>
-                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource OrangeButton}">
-                                <Setter Property="IsEnabled" Value="True" />
+				<StackPanel  Grid.Column="1" Style="{StaticResource PDSButtonStackPanelStyle}">
+					<Button x:Name="btnProcessQueue" Click="btnProcessQueue_Click" Content="Process DUE" Foreground="Black">
+						<Button.Style>
+							<Style TargetType="{x:Type Button}" BasedOn="{StaticResource OrangeButton}">
+								<Setter Property="IsEnabled" Value="True" />
 
-                                <Style.Triggers>
-                                    <DataTrigger  Binding="{Binding SelectedIndex,ElementName=dgQueueItems}" Value="-1">
-                                        <Setter Property="IsEnabled" Value="False" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                </StackPanel>
-                
-            </Grid>
-        </Border>
+								<Style.Triggers>
+									<DataTrigger  Binding="{Binding SelectedIndex,ElementName=dgQueueItems}" Value="-1">
+										<Setter Property="IsEnabled" Value="False" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</Button.Style>
+					</Button>
+				</StackPanel>
+				
+			</Grid>
+		</Border>
 
-        
-        <Grid  x:Name="worklistGrid" Grid.Row="1">
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <GroupBox Header="PDS QUEUES" Grid.Row="1" Style="{StaticResource PDSGroupBoxStyle}" Margin="5">
+			<Grid  x:Name="worklistGrid" Grid.Row="1">
+			
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
 
-            <ListBox x:Name="lstWorklists" Grid.Column="0" Grid.Row="1"               
-                 BorderThickness="1" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"              
-                 ItemTemplate="{StaticResource WorklistSummaryDataTemplate}" 
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
-                  SelectionChanged="lstWorklists_SelectionChanged"
-                  SelectedIndex="0"   >                
-            </ListBox>
+			<ListBox x:Name="lstWorklists" Grid.Column="0" Grid.Row="1"               
+				 BorderThickness="1" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"              
+				 ItemTemplate="{StaticResource WorklistSummaryDataTemplate}" 
+				  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+				  Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
+				  SelectionChanged="lstWorklists_SelectionChanged"
+				  SelectedIndex="0"   >                
+			</ListBox>
 
-                <DataGrid x:Name="dgQueueItems" 
-                          IsReadOnly="True" 
-                          SelectionUnit="FullRow"
-                          Grid.Column="1"                           
-                          AutoGenerateColumns="False" 
-                          MouseDoubleClick="dgQueueItems_MouseDoubleClick"
-                          Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name"  Binding="{Binding Path=Prescription.Patient.FirstName}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Rx #"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Drug"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Prescriber"></DataGridTextColumn>                        
-                    </DataGrid.Columns>                    
-                </DataGrid>
-            </Grid>
-        
-    </Grid>
+				<DataGrid x:Name="dgQueueItems" 
+						  IsReadOnly="True" 
+						  SelectionUnit="FullRow"
+						  Grid.Column="1"                           
+						  AutoGenerateColumns="False" 
+						  MouseDoubleClick="dgQueueItems_MouseDoubleClick"
+						  Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Name"  Binding="{Binding Path=Prescription.Patient.FirstName}"></DataGridTextColumn>
+						<DataGridTextColumn Header="Rx #"></DataGridTextColumn>
+						<DataGridTextColumn Header="Drug"></DataGridTextColumn>
+						<DataGridTextColumn Header="Prescriber"></DataGridTextColumn>                        
+					</DataGrid.Columns>                    
+				</DataGrid>
+			</Grid>
+		</GroupBox>
+	</Grid>
 </Page>

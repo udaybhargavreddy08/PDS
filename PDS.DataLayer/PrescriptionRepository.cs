@@ -47,6 +47,8 @@ namespace PDS.DataLayer
                 MapPDSRxToPrescription(pdsRx,prescription);               
             }
 
+            prescription.Patient = new PatientRepository().Load(prescription.Patient.Id);
+
             return prescription;
         }
 
