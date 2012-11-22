@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PDS.DomainModel;
+using PDS.DataLayer;
 
 namespace PDS.BusinessLayer
 {
     public class FillManager
     {
-        public void Save(Fill fill)
+        public void Create(Fill fill)
         {
-
+            new FillRepository().Create(fill);
         }
 
         public Fill Load(int fillId)

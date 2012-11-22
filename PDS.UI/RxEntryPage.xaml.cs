@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PDS.DomainModel;
+using PDS.BusinessLayer;
 
 namespace PDS.UI
 {
@@ -19,6 +21,13 @@ namespace PDS.UI
     /// </summary>
     public partial class RxEntryPage : Page
     {
+
+        public Patient SelectedPatient { get; set; }
+
+        public Product SelectedProduct { get; set; }
+
+        public Prescriber SelectedPrescriber { get; set; }
+
         public RxEntryPage()
         {
             InitializeComponent();
@@ -27,11 +36,44 @@ namespace PDS.UI
 
         void RxEntryPage_Loaded(object sender, RoutedEventArgs e)
         {
+
             txtWrittenDate.SelectedDate = DateTime.Now;
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+
+            Prescription prescription = new Prescription();
+            prescription.Patient = SelectedPatient;
+            prescription.Product = SelectedProduct;
+            prescription.Prescriber = SelectedPrescriber;
+            prescription.SIG = txtSig.Text;
+            prescription.WrittenDate = txtWrittenDate.SelectedDate.Value;
+            prescription.ExpirationDate = prescription.WrittenDate.Add(new TimeSpan(365,0,0,0));
+
+            Int32 refills;
+            Int32.TryParse(txtRefills.Text, out refills);
+
+            prescription.RefillsAllowed = refills;
+                            //Create the Fills 
+            prescription = new PrescriptionManager().Create(prescription);
+
+            Fill fill = new Fill();
+            fill.Prescription = prescription;
+            fill.RefillsAllowed = refills;
+            
+            Int32 writtenQty;
+            Int32.TryParse(txtWrittenQty.Text, out writtenQty);
+
+            fill.WrittenQty = writtenQty;
+            fill.DispensedQty = writtenQty;
+
+            fill.QueueState = QueueStates.RxEntry;
+            fill.DispensedDate = DateTime.Today;
+                       
+            new FillManager().Create(fill);
+
+      
             NavigationService.GoBack();
         }
 
@@ -52,13 +94,13 @@ namespace PDS.UI
 
             if (dlg.SearchDialogResult == SearchDialogResult.Select && dlg.SelectedPatient != null)
             {
-                var selectedPatient = dlg.SelectedPatient;
-                txtfirstName.Text = selectedPatient.FirstName;
-                txtlastName.Text = selectedPatient.LastName;
-                txtPhoneNumber.Text = selectedPatient.PhoneNumber;
-                txtAddres.Text = selectedPatient.Address.ToString();
-                txtDOB.Text = selectedPatient.DOB != null ?selectedPatient.DOB.ToShortDateString() : string.Empty;
-               // txtGender.Text = selectedPatient.Gender;
+                SelectedPatient = dlg.SelectedPatient;
+                txtfirstName.Text = SelectedPatient.FirstName;
+                txtlastName.Text = SelectedPatient.LastName;
+                txtPhoneNumber.Text = SelectedPatient.PhoneNumber;
+                txtAddres.Text = SelectedPatient.Address.ToString();
+                txtDOB.Text = SelectedPatient.DOB != null ?SelectedPatient.DOB.ToShortDateString() : string.Empty;
+               // txtGender.Text = SelectedPatient.Gender;
             }
         }
 
@@ -73,10 +115,10 @@ namespace PDS.UI
 
             if (dlg.SearchDialogResult == SearchDialogResult.Select && dlg.SelectedProduct != null)
             {
-                var selectedProduct = dlg.SelectedProduct;
+                SelectedProduct = dlg.SelectedProduct;
 
-                txtProductName.Text = selectedProduct.Name;
-                txtNDC.Text = selectedProduct.NDC;
+                txtProductName.Text = SelectedProduct.Name;
+                txtNDC.Text = SelectedProduct.NDC;
             }
 
         }
@@ -92,12 +134,12 @@ namespace PDS.UI
 
             if (dlg.SearchDialogResult == SearchDialogResult.Select && dlg.SelectedPrescriber != null)
             {
-                var selectePrescriber = dlg.SelectedPrescriber;
+                SelectedPrescriber = dlg.SelectedPrescriber;
 
-                txtPscbfirstName.Text = selectePrescriber.FirstName;
-                txtPscblastName.Text = selectePrescriber.LastName;
-                txtDEA.Text = selectePrescriber.DEA;
-                txtNPI.Text = selectePrescriber.NPI;
+                txtPscbfirstName.Text = SelectedPrescriber.FirstName;
+                txtPscblastName.Text = SelectedPrescriber.LastName;
+                txtDEA.Text = SelectedPrescriber.DEA;
+                txtNPI.Text = SelectedPrescriber.NPI;
             }
         }
     }

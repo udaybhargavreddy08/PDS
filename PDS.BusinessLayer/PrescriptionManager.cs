@@ -9,9 +9,9 @@ namespace PDS.BusinessLayer
 {
     public class PrescriptionManager
     {
-        public void Save(Prescription prescription)
+        public Prescription Create(Prescription prescription)
         {
-           
+            return new PrescriptionRepository().Create(prescription);            
         }
 
       

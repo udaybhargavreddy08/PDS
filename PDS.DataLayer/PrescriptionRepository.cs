@@ -8,16 +8,23 @@ namespace PDS.DataLayer
 {
     public class PrescriptionRepository
     {
-        public void Save(Prescription prescription)
+        public Prescription Create(Prescription prescription)
         {
+             PDSRx pdsRx = null;
             using (var context = new PDSEntities())
             {
-                PDSRx pdsRx = new PDSRx();
+                pdsRx = new PDSRx();
                 MapParescriptiontoPDSRx(prescription, pdsRx);
 
                 context.AddToPDSRxes(pdsRx);
                 context.SaveChanges();
             }
+
+            if(pdsRx != null)
+            {
+            prescription.Id = pdsRx.ID;
+            }
+            return prescription;
         }
 
         private void MapParescriptiontoPDSRx(Prescription prescription, PDSRx pdsRx)
@@ -27,7 +34,8 @@ namespace PDS.DataLayer
             pdsRx.PrescriberID = prescription.Prescriber.Id;
             pdsRx.ProductID = prescription.Product.Id;
             pdsRx.RefillsAllowed = prescription.RefillsAllowed;
-            pdsRx.WrittenDate = prescription.WrittenDate;            
+            pdsRx.WrittenDate = prescription.WrittenDate;
+            pdsRx.ExpirationDate = prescription.ExpirationDate;
         }
 
         public Prescription Load(int rxId)

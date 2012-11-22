@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="enums.cs" />
     <Compile Include="FillManager.cs" />
     <Compile Include="PatientManager.cs" />
     <Compile Include="PrescriptionManager.cs" />

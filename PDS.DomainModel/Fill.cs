@@ -22,18 +22,30 @@ namespace PDS.DomainModel
             }
         }
 
+        public QueueStates QueueState { get; set; }
+
+        public bool IsAdjudicated { get; set; }
+
+        public bool IsSold { get; set; }
+
+        public bool IsDUEApproved { get; set; }
+
+        public bool IsPrintLabelCompleted { get; set; }
+
+        public bool IsRPHApproved { get; set; }
+        
         public Prescription Prescription { get; set; }
 
-        private DateTime _PromiseTime;
-        public DateTime PromiseTime
+        private DateTime _DispensedDate;
+        public DateTime DispensedDate
         {
-            get { return _PromiseTime; }
+            get { return _DispensedDate; }
             set
             {
-                if (value != _PromiseTime)
+                if (value != _DispensedDate)
                 {
-                    _PromiseTime = value;
-                    NotifyPropertyChanged("PromiseTime");
+                    _DispensedDate = value;
+                    NotifyPropertyChanged("DispensedDate");
                 }
             }
         }
