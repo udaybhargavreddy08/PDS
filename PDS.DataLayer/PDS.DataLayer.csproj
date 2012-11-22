@@ -50,6 +50,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PDSDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PrescriptionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

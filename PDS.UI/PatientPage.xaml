@@ -1,207 +1,208 @@
 ﻿<PageFunction x:Class="PDS.UI.PatientPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:metro="http://schemas.codeplex.com/elysium/theme"
-      xmlns:local="clr-namespace:PDS.UI;assembly="
-      mc:Ignorable="d" FontSize="14"
-      x:TypeArguments="local:PatientViewModel"
-      
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  xmlns:metro="http://schemas.codeplex.com/elysium/theme"
+	  xmlns:local="clr-namespace:PDS.UI;assembly="
+	  mc:Ignorable="d" FontSize="14"
+	  x:TypeArguments="local:PatientViewModel"
+	  
 	Title="Patient">
 
-    
-    <Grid x:Name="outerGrid"  Margin="5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
+	<GroupBox Header="ADD PATIENT" Style="{StaticResource PDSGroupBoxStyle}">
+	<Grid x:Name="outerGrid"  Margin="5">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+		</Grid.RowDefinitions>
 
-        
-        <Border x:Name="brdMessages" BorderThickness="1" BorderBrush="Red">
-        <TextBlock x:Name="txtErrorMessages" ></TextBlock>
-        </Border>
-        
-        
-        <GroupBox Header="Patient Details" Grid.Row="1"  Margin="5">
-            <Grid x:Name="patientDetialsGrid"  >
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+		
+		<Border x:Name="brdMessages" BorderThickness="1" BorderBrush="Red">
+		<TextBlock x:Name="txtErrorMessages" ></TextBlock>
+		</Border>
+		
+		
+		<GroupBox Header="Patient Details" Grid.Row="1"  Margin="5">
+			<Grid x:Name="patientDetialsGrid"  >
+				<Grid.RowDefinitions>
+					<RowDefinition></RowDefinition>
+					<RowDefinition></RowDefinition>
+				</Grid.RowDefinitions>
+				
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+				</Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Style="{StaticResource RightAlignStyle}"    >First Name</TextBlock>
-                <TextBox Grid.Column="1" x:Name="txtFirstName" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
+				<TextBlock Grid.Column="0" Style="{StaticResource RightAlignStyle}"    >First Name</TextBlock>
+				<TextBox Grid.Column="1" x:Name="txtFirstName" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
 
-                <TextBlock Grid.Column="2" Style="{StaticResource RightAlignStyle}"   >Middle Name</TextBlock>
-                <TextBox Grid.Column="3" x:Name="txtMiddleName" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
+				<TextBlock Grid.Column="2" Style="{StaticResource RightAlignStyle}"   >Middle Name</TextBlock>
+				<TextBox Grid.Column="3" x:Name="txtMiddleName" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
 
-                <TextBlock Grid.Column="4" Style="{StaticResource RightAlignStyle}"   >Last Name</TextBlock>
-                <TextBox Grid.Column="5" x:Name="txtLastName" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
+				<TextBlock Grid.Column="4" Style="{StaticResource RightAlignStyle}"   >Last Name</TextBlock>
+				<TextBox Grid.Column="5" x:Name="txtLastName" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource RightAlignStyle}"   >DOB</TextBlock>
-                <DatePicker Grid.Row="1" Grid.Column="1" x:Name="txtDOB"   Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"  ></DatePicker>
+				<TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource RightAlignStyle}"   >DOB</TextBlock>
+				<DatePicker Grid.Row="1" Grid.Column="1" x:Name="txtDOB"   Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"  ></DatePicker>
 
-                <TextBlock Grid.Row="1"  Grid.Column="2" Style="{StaticResource RightAlignStyle}"   >Gender</TextBlock>
-                <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbGender" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">
-                    <ComboBoxItem IsSelected="True">Male</ComboBoxItem>
-                    <ComboBoxItem>Female</ComboBoxItem>
-                </ComboBox>
+				<TextBlock Grid.Row="1"  Grid.Column="2" Style="{StaticResource RightAlignStyle}"   >Gender</TextBlock>
+				<ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbGender" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">
+					<ComboBoxItem IsSelected="True">Male</ComboBoxItem>
+					<ComboBoxItem>Female</ComboBoxItem>
+				</ComboBox>
 
-                <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource RightAlignStyle}"   >Phone</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="5" x:Name="txtPhone" Style="{StaticResource PDSTextBoxStyle}"  ></TextBox>
+				<TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource RightAlignStyle}"   >Phone</TextBlock>
+				<TextBox Grid.Row="1" Grid.Column="5" x:Name="txtPhone" Style="{StaticResource PDSTextBoxStyle}"  ></TextBox>
 
-            </Grid>
-        </GroupBox >
+			</Grid>
+		</GroupBox >
 
-        <GroupBox Header="Address" Grid.Row="2"  Margin="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+		<GroupBox Header="Address" Grid.Row="2"  Margin="5">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition></RowDefinition>
+					<RowDefinition></RowDefinition>
+				</Grid.RowDefinitions>
+				
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+				</Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Address 1</TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="txtAddress1" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
-                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource RightAlignStyle}">Address 2</TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" x:Name="txtAddress2" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
+				<TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Address 1</TextBlock>
+				<TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="txtAddress1" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
+				<TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource RightAlignStyle}">Address 2</TextBlock>
+				<TextBox Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" x:Name="txtAddress2" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource RightAlignStyle}">City</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtCity" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
+				<TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource RightAlignStyle}">City</TextBlock>
+				<TextBox Grid.Row="1" Grid.Column="1" x:Name="txtCity" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
 
-                <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource RightAlignStyle}">State</TextBlock>
+				<TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource RightAlignStyle}">State</TextBlock>
 
-                <ComboBox x:Name="cmbState" Grid.Row="1" Grid.Column="3"
-                          Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">
-                    <ComboBoxItem IsSelected="True">AL</ComboBoxItem>
-                    <ComboBoxItem >AK</ComboBoxItem>
-                    <ComboBoxItem >AZ</ComboBoxItem>
-                    <ComboBoxItem >AR</ComboBoxItem>
-                    <ComboBoxItem >CA</ComboBoxItem>
-                    <ComboBoxItem >CO</ComboBoxItem>
-                    <ComboBoxItem >CT</ComboBoxItem>
-                    <ComboBoxItem >DC</ComboBoxItem>
-                    <ComboBoxItem >DE</ComboBoxItem>
-                    <ComboBoxItem >FL</ComboBoxItem>
-                    <ComboBoxItem >GA</ComboBoxItem>
-                    <ComboBoxItem >HI</ComboBoxItem>
-                    <ComboBoxItem >ID</ComboBoxItem>
-                    <ComboBoxItem >IL</ComboBoxItem>
-                    <ComboBoxItem >IN</ComboBoxItem>
-                    <ComboBoxItem >IA</ComboBoxItem>
-                    <ComboBoxItem >KS</ComboBoxItem>
-                    <ComboBoxItem >KY</ComboBoxItem>
-                    <ComboBoxItem >LA</ComboBoxItem>
-                    <ComboBoxItem >ME</ComboBoxItem>
-                    <ComboBoxItem >MD</ComboBoxItem>
-                    <ComboBoxItem >MA</ComboBoxItem>
-                    <ComboBoxItem >MI</ComboBoxItem>
-                    <ComboBoxItem >MN</ComboBoxItem>
-                    <ComboBoxItem >MS</ComboBoxItem>
-                    <ComboBoxItem >MO</ComboBoxItem>
-                    <ComboBoxItem >MT</ComboBoxItem>
-                    <ComboBoxItem >NE</ComboBoxItem>
-                    <ComboBoxItem >NV</ComboBoxItem>
-                    <ComboBoxItem >NH</ComboBoxItem>
-                    <ComboBoxItem >NJ</ComboBoxItem>
-                    <ComboBoxItem >NM</ComboBoxItem>
-                    <ComboBoxItem >NY</ComboBoxItem>
-                    <ComboBoxItem >NC</ComboBoxItem>
-                    <ComboBoxItem >ND</ComboBoxItem>
-                    <ComboBoxItem >OH</ComboBoxItem>
-                    <ComboBoxItem >OK</ComboBoxItem>
-                    <ComboBoxItem >OR</ComboBoxItem>
-                    <ComboBoxItem >PA</ComboBoxItem>
-                    <ComboBoxItem >RI</ComboBoxItem>
-                    <ComboBoxItem >SC</ComboBoxItem>
-                    <ComboBoxItem >SD</ComboBoxItem>
-                    <ComboBoxItem >TN</ComboBoxItem>
-                    <ComboBoxItem >TX</ComboBoxItem>
-                    <ComboBoxItem >UT</ComboBoxItem>
-                    <ComboBoxItem >VT</ComboBoxItem>
-                    <ComboBoxItem >VA</ComboBoxItem>
-                    <ComboBoxItem >WA</ComboBoxItem>
-                    <ComboBoxItem >WV</ComboBoxItem>
-                    <ComboBoxItem >WI</ComboBoxItem>
-                    <ComboBoxItem >WY</ComboBoxItem>
-                </ComboBox>
+				<ComboBox x:Name="cmbState" Grid.Row="1" Grid.Column="3"
+						  Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}">
+					<ComboBoxItem IsSelected="True">AL</ComboBoxItem>
+					<ComboBoxItem >AK</ComboBoxItem>
+					<ComboBoxItem >AZ</ComboBoxItem>
+					<ComboBoxItem >AR</ComboBoxItem>
+					<ComboBoxItem >CA</ComboBoxItem>
+					<ComboBoxItem >CO</ComboBoxItem>
+					<ComboBoxItem >CT</ComboBoxItem>
+					<ComboBoxItem >DC</ComboBoxItem>
+					<ComboBoxItem >DE</ComboBoxItem>
+					<ComboBoxItem >FL</ComboBoxItem>
+					<ComboBoxItem >GA</ComboBoxItem>
+					<ComboBoxItem >HI</ComboBoxItem>
+					<ComboBoxItem >ID</ComboBoxItem>
+					<ComboBoxItem >IL</ComboBoxItem>
+					<ComboBoxItem >IN</ComboBoxItem>
+					<ComboBoxItem >IA</ComboBoxItem>
+					<ComboBoxItem >KS</ComboBoxItem>
+					<ComboBoxItem >KY</ComboBoxItem>
+					<ComboBoxItem >LA</ComboBoxItem>
+					<ComboBoxItem >ME</ComboBoxItem>
+					<ComboBoxItem >MD</ComboBoxItem>
+					<ComboBoxItem >MA</ComboBoxItem>
+					<ComboBoxItem >MI</ComboBoxItem>
+					<ComboBoxItem >MN</ComboBoxItem>
+					<ComboBoxItem >MS</ComboBoxItem>
+					<ComboBoxItem >MO</ComboBoxItem>
+					<ComboBoxItem >MT</ComboBoxItem>
+					<ComboBoxItem >NE</ComboBoxItem>
+					<ComboBoxItem >NV</ComboBoxItem>
+					<ComboBoxItem >NH</ComboBoxItem>
+					<ComboBoxItem >NJ</ComboBoxItem>
+					<ComboBoxItem >NM</ComboBoxItem>
+					<ComboBoxItem >NY</ComboBoxItem>
+					<ComboBoxItem >NC</ComboBoxItem>
+					<ComboBoxItem >ND</ComboBoxItem>
+					<ComboBoxItem >OH</ComboBoxItem>
+					<ComboBoxItem >OK</ComboBoxItem>
+					<ComboBoxItem >OR</ComboBoxItem>
+					<ComboBoxItem >PA</ComboBoxItem>
+					<ComboBoxItem >RI</ComboBoxItem>
+					<ComboBoxItem >SC</ComboBoxItem>
+					<ComboBoxItem >SD</ComboBoxItem>
+					<ComboBoxItem >TN</ComboBoxItem>
+					<ComboBoxItem >TX</ComboBoxItem>
+					<ComboBoxItem >UT</ComboBoxItem>
+					<ComboBoxItem >VT</ComboBoxItem>
+					<ComboBoxItem >VA</ComboBoxItem>
+					<ComboBoxItem >WA</ComboBoxItem>
+					<ComboBoxItem >WV</ComboBoxItem>
+					<ComboBoxItem >WI</ComboBoxItem>
+					<ComboBoxItem >WY</ComboBoxItem>
+				</ComboBox>
 
 
-                <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource RightAlignStyle}">Zip</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="5" x:Name="txtZip" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
+				<TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource RightAlignStyle}">Zip</TextBlock>
+				<TextBox Grid.Row="1" Grid.Column="5" x:Name="txtZip" Style="{StaticResource PDSTextBoxStyle}" ></TextBox>
 
-            </Grid>
-        </GroupBox>
+			</Grid>
+		</GroupBox>
 
-        <GroupBox Header="Allergies" Grid.Row="3"  Margin="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                   
-                </Grid.ColumnDefinitions>
+		<GroupBox Header="Allergies" Grid.Row="3"  Margin="5">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition></RowDefinition>
+					<RowDefinition></RowDefinition>
+					<RowDefinition></RowDefinition>
+				</Grid.RowDefinitions>
+				
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+				   
+				</Grid.ColumnDefinitions>
 
-                <CheckBox Grid.Row="0" Grid.Column="0">Asthma</CheckBox>
-                <CheckBox Grid.Row="0" Grid.Column="1">Dust Allergy</CheckBox>
-                <CheckBox Grid.Row="0" Grid.Column="2">Nuts Allergy</CheckBox>
-                <CheckBox Grid.Row="1" Grid.Column="0">Pet Allergy</CheckBox>
-                <CheckBox Grid.Row="1" Grid.Column="1">Pollen Allergiy</CheckBox>
-                <CheckBox Grid.Row="1" Grid.Column="2">Insect Allergiy</CheckBox>
+				<CheckBox Grid.Row="0" Grid.Column="0">Asthma</CheckBox>
+				<CheckBox Grid.Row="0" Grid.Column="1">Dust Allergy</CheckBox>
+				<CheckBox Grid.Row="0" Grid.Column="2">Nuts Allergy</CheckBox>
+				<CheckBox Grid.Row="1" Grid.Column="0">Pet Allergy</CheckBox>
+				<CheckBox Grid.Row="1" Grid.Column="1">Pollen Allergiy</CheckBox>
+				<CheckBox Grid.Row="1" Grid.Column="2">Insect Allergiy</CheckBox>
 
-            </Grid>
-        </GroupBox>
+			</Grid>
+		</GroupBox>
 
-        <GroupBox Header="Billing Details" Grid.Row="4"  Margin="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>                   
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                
-                <RadioButton x:Name="rdbCash" Grid.Column="0" GroupName="billingMethod">Cash</RadioButton>
-                <RadioButton Grid.Column="1" GroupName="billingMethod">Insurance</RadioButton>
-                
-            </Grid>
-            
-        </GroupBox>
+		<GroupBox Header="Billing Details" Grid.Row="4"  Margin="5">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition></RowDefinition>
+					<RowDefinition></RowDefinition>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition></ColumnDefinition>                   
+					<ColumnDefinition></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+				
+				<RadioButton x:Name="rdbCash" Grid.Column="0" GroupName="billingMethod">Cash</RadioButton>
+				<RadioButton Grid.Column="1" GroupName="billingMethod">Insurance</RadioButton>
+				
+			</Grid>
+			
+		</GroupBox>
 
-        <StackPanel Grid.Row="6" Style="{StaticResource PDSButtonStackPanelStyle}"  >
-            <Button x:Name="btnSave" Click="btnSave_Click" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" >Save</Button>
-            <Button x:Name="btnCancel" Click="btnCancel_Click" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" >Cancel</Button>
-        </StackPanel>
-    </Grid>
+		<StackPanel Grid.Row="6" Style="{StaticResource PDSButtonStackPanelStyle}"  >
+			<Button x:Name="btnSave" Click="btnSave_Click" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" >Save</Button>
+			<Button x:Name="btnCancel" Click="btnCancel_Click" Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" >Cancel</Button>
+		</StackPanel>
+	</Grid>
+	</GroupBox>
 </PageFunction>

@@ -22,6 +22,7 @@ namespace PDS.DomainModel
             }
         }
 
+        public int RefillsAllowed { get; set; }
 
         public Patient Patient { get; set; }
 
@@ -29,15 +30,18 @@ namespace PDS.DomainModel
 
         public Prescriber Prescriber { get; set; }
 
+        public string SIG { get; set; }
+
+        public DateTime ExpirationDate { get; set; }
+
+        public DateTime WrittenDate { get; set; }
+
         private void NotifyPropertyChanged(string propertyName)
         {
-
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-
         }
-
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

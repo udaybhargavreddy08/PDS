@@ -17,6 +17,8 @@ namespace PDS.DomainModel
 
         }
 
+        public int Id { get; set; }
+
         private string _Name;
         public string Name
         {

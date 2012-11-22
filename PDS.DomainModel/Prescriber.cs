@@ -16,6 +16,8 @@ namespace PDS.DomainModel
 
         }
 
+        public int Id { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string _LastName;
