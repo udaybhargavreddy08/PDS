@@ -9,9 +9,7 @@
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Elysium.Theme;component/Themes/Generic.xaml"/>
-                <ResourceDictionary Source="Assets/Brushes.xaml" />
-                <ResourceDictionary Source="Assets/Fonts.xaml" />
-                <ResourceDictionary Source="Assets/PDSStyles.xaml" />
+              
                 <!--<ResourceDictionary Source="Assets/Styles.xaml" />
                 <ResourceDictionary Source="Assets/SdkStyles.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
