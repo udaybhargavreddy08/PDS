@@ -26,6 +26,7 @@
         </Style>
     </Page.Resources>
 
+    <GroupBox Header="DRUG UTILIZATION EVALUATION" Style="{StaticResource PDSGroupBoxStyle}">
     <Grid x:Name="duePageGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -35,7 +36,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
        
-        <TextBlock FontSize="18">DRUG UTILIZATION EVALUATION</TextBlock>
+        <TextBlock FontSize="18"></TextBlock>
 
         <local:RxInformationControl Grid.Row="1"  Margin="5"></local:RxInformationControl>
             
@@ -75,4 +76,5 @@
         </StackPanel>
 
     </Grid>
+    </GroupBox>
 </Page>
