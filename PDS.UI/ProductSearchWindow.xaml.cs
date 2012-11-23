@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PDS.DomainModel;
+using PDS.BusinessLayer;
 
 namespace PDS.UI
 {
@@ -60,11 +61,7 @@ namespace PDS.UI
 
         private void PerformSearch()
         {
-            var products = new List<Product>() {
-                                               new Product{ Name="Prozac", NDC = "123324234234"},
-                                               new Product{ Name="Amoxicillin", NDC= "34343434"}
-
-                                                };
+            var products = new ProductManager().SearchForProducts(txtDrugName.Text, txtNDC.Text);
 
             dgSrchResults.ItemsSource = products;
         }

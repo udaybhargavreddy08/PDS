@@ -71,7 +71,10 @@ namespace PDS.UI
             fill.QueueState = QueueStates.RxEntry;
             fill.DispensedDate = DateTime.Today;
                        
-            new FillManager().Create(fill);
+            var createdFill = new FillManager().Create(fill);
+
+            //Submit the Fill
+            new FillManager().Submit(createdFill);
 
       
             NavigationService.GoBack();

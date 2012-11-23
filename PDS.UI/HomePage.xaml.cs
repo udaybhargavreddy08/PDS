@@ -31,31 +31,37 @@ namespace PDS.UI
 
         void HomePage_Loaded(object sender, RoutedEventArgs e)
         {
-            //var queues = new List<PDSQueue>()
-            //                {
-            //                    new PDSQueue {  Name="DUE", Count = 20, Code="DUE"},
-            //                    new PDSQueue { Name="3RD PARTY REJECTS", Count = 12, Code="MAR"},
-            //                    new PDSQueue { Name="PRINT LABEL", Count = 2, Code="PLABEL"},
-            //                    new PDSQueue { Name="RPH VERIFICATION", Count = 2, Code="RPH"},
-            //                    new PDSQueue { Name="WILL CALL", Count = 2, Code="WILLCALL"}
-            //                };
-
-            //lstWorklists.ItemsSource = queues;
-
-            //lstWorklists.SelectedIndex = 0;
-            //var queueItems = new List<Fill>()
-            //{
-            //    new Fill{ Prescription = new Prescription{ Patient = new Patient{ FirstName = "Uday", LastName="Reddy"}, Prescriber = new Prescriber { FirstName= "Peter", LastName = "George"}, Product = new Product { Name = "Amoxicillin"}}},
-            //    new Fill{ Prescription = new Prescription{ Patient = new Patient{ FirstName = "Jan", LastName="Doe"}, Prescriber = new Prescriber { FirstName= "Peter", LastName = "George"}, Product = new Product { Name = "Prozac"}}},
-            //    new Fill{ Prescription = new Prescription{ Patient = new Patient{ FirstName = "Jan", LastName="Doe"}, Prescriber = new Prescriber { FirstName= "Peter", LastName = "George"}, Product = new Product { Name = "IBruphine"}}}
-            //};
+            
+             var pdsQueues = new List<PDSQueue>()
+                            {
+                               
+                                new PDSQueue { StateId = (int)QueueStates.ThirdPartyRejects, Name="3RD PARTY REJECTS", Code="MAR"},
+                                new PDSQueue { StateId = (int)QueueStates.DUE, Name="DUE", Code="DUE"},
+                                new PDSQueue { StateId = (int)QueueStates.PrintLabel, Name="PRINT LABEL", Code="PLABEL"},
+                                new PDSQueue { StateId = (int)QueueStates.RPHVerificaiton, Name="RPH VERIFICATION", Code="RPH"},
+                                new PDSQueue { StateId = (int)QueueStates.WillCall, Name="WILL CALL",  Code="WILLCALL"}
+                            };
 
 
-           
-           var snapShot = new QueueManager().GetQueueInformation(1001);
-           lstWorklists.ItemsSource = snapShot.Queues;
-           dgQueueItems.ItemsSource = snapShot.SelectedQueueFills;
+            lstWorklists.ItemsSource = pdsQueues;
 
+            lstWorklists.SelectedIndex = 0;
+          
+
+        }
+
+        private void UpdateQueueInfo(int stateId)
+        {
+
+            var snapShot = new QueueManager().GetQueueInformation(stateId);
+            var pdsQueues = lstWorklists.ItemsSource;
+
+            foreach (var item in pdsQueues)
+            {
+                var queueItem = item as PDSQueue;
+                queueItem.Count = snapShot.Queues.Single(p => p.StateId == queueItem.StateId).Count;
+            }
+            dgQueueItems.ItemsSource = snapShot.SelectedQueueFills;
         }
 
       
@@ -75,62 +81,87 @@ namespace PDS.UI
             if (lstWorklists.SelectedItem != null)
             {
                 var pdsQueue = lstWorklists.SelectedItem as PDSQueue;
-                string selectedCode = pdsQueue.Code;
+                var selectedId = pdsQueue.StateId;
 
-                if (selectedCode == "MAR")
-                {
-                    btnProcessQueue.Content = "Process Rejects";
-                }
-                else if (selectedCode == "DUE")
-                {
-                    btnProcessQueue.Content = "Process DUE";
-                }
-                else if (selectedCode == "RPH")
-                {
-                    btnProcessQueue.Content = "Verify Fill";
-                }
-                else if (selectedCode == "PLABEL")
-                {
-                    btnProcessQueue.Content = "Print Label";
-                }
-                else if (selectedCode == "WILLCALL")
-                {
-                    btnProcessQueue.Content = "Sell";
-                }
+                UpdateQueueInfo(selectedId);
+
+                ChangeButtonContent(pdsQueue);
+            }
+        }
+
+        private void ChangeButtonContent(PDSQueue pdsQueue)
+        {
+            QueueStates selectedQueue = (QueueStates)Enum.ToObject(typeof(QueueStates), pdsQueue.StateId);
+
+            if (selectedQueue == QueueStates.ThirdPartyRejects)
+            {
+                btnProcessQueue.Content = "Process Rejects";
+            }
+            else if (selectedQueue == QueueStates.DUE)
+            {
+                btnProcessQueue.Content = "Process DUE";
+            }
+            else if (selectedQueue == QueueStates.RPHVerificaiton)
+            {
+                btnProcessQueue.Content = "Verify Fill";
+            }
+            else if (selectedQueue == QueueStates.PrintLabel)
+            {
+                btnProcessQueue.Content = "Print Label";
+            }
+            else if (selectedQueue == QueueStates.WillCall)
+            {
+                btnProcessQueue.Content = "Sell";
             }
         }
 
         private void dgQueueItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            ProcessFill();
+        }
+
+        private void ProcessFill()
+        {
             if (dgQueueItems.SelectedItem != null && lstWorklists.SelectedItem != null)
             {
                 var pdsQueue = lstWorklists.SelectedItem as PDSQueue;
                 var selectedFill = dgQueueItems.SelectedItem as Fill;
-                string selectedCode = pdsQueue.Code;
 
-                if (selectedCode == "MAR")
-                {
-                    NavigationService.Navigate(new MARPage(), selectedFill);
-                }
-                else if (selectedCode == "DUE")
-                {
-                    NavigationService.Navigate(new DUEPage(), selectedFill);
-                }
-                else if (selectedCode == "RPH")
-                {
-                    NavigationService.Navigate(new RPHVerificationPage(), selectedFill);
-                }
-                else if (selectedCode == "WILLCALL")
-                {
-                    NavigationService.Navigate(new RPHVerificationPage(), selectedFill);
-                }
+                var selectedId = pdsQueue.StateId;
+                QueueStates selectedQueue = (QueueStates)Enum.ToObject(typeof(QueueStates), pdsQueue.StateId);
 
+                if (selectedFill != null)
+                {
+                    if (selectedQueue == QueueStates.ThirdPartyRejects)
+                    {
+                        NavigationService.Navigate(new MARPage(selectedFill));
+                    }
+                    else if (selectedQueue == QueueStates.DUE)
+                    {
+                        NavigationService.Navigate(new DUEPage(selectedFill));
+                    }
+                    else if (selectedQueue == QueueStates.PrintLabel)
+                    {
+                        new FillManager().PrintLabel(selectedFill);
+                        UpdateQueueInfo((int)QueueStates.PrintLabel);
+                    }
+                    else if (selectedQueue == QueueStates.RPHVerificaiton)
+                    {
+                        NavigationService.Navigate(new RPHVerificationPage(selectedFill));
+                    }
+                    else if (selectedQueue == QueueStates.WillCall)
+                    {
+                        new FillManager().Sell(selectedFill);
+                        UpdateQueueInfo((int)QueueStates.WillCall);
+                    }
+                   
+                }
             }
         }
 
         private void btnProcessQueue_Click(object sender, RoutedEventArgs e)
         {
-
+            ProcessFill();
         }
 
 

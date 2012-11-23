@@ -1,0 +1,16 @@
+PDS TO DO LIST
+
+IMPORTANT / MUST DO
+1. Security implementation
+2. Print Label
+3. Global exception handling
+
+
+
+
+OPTIONAL
+1. Zip is not getting saved in DB
+5. Product integration - database + UI
+6. Prescriber intergation - database + UI
+7. Written Date is not getting populated in DB
+8. homedata grid color selection

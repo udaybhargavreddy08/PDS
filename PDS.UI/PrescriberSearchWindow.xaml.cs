@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PDS.DomainModel;
+using PDS.BusinessLayer;
 
 namespace PDS.UI
 {
@@ -60,10 +61,7 @@ namespace PDS.UI
 
         private void PerformSearch()
         {
-            var prescribers = new List<Prescriber>() {
-                                               new Prescriber{ FirstName="George", LastName = "Peter", DEA="AB123123123", NPI="98988989"},
-                                               new Prescriber{ FirstName="George", LastName= "Alexander", DEA="BC9009099", NPI="9879889"}
-                                                };
+            var prescribers = new PrescriberManager().SearchForPrescriber(txtFirstName.Text, txtLastName.Text);
 
             dgSrchResults.ItemsSource = prescribers;
         }

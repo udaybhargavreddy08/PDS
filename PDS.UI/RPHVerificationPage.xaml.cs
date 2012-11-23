@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PDS.BusinessLayer;
+using PDS.DomainModel;
 
 namespace PDS.UI
 {
@@ -24,8 +26,19 @@ namespace PDS.UI
             InitializeComponent();
         }
 
+        public Fill SelectedFill { get; set; }
+
+        public RPHVerificationPage(Fill selecetedFill) :  this()
+        {
+           
+            SelectedFill = selecetedFill;
+        }
+
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            new FillManager().PerformRPHVerificaiton(SelectedFill);
+
+            NavigationService.GoBack();
 
         }
 

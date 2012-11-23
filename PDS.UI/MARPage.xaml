@@ -9,6 +9,7 @@
    
 	Title="MARPage">
 
+    <GroupBox Header="MANAGE 3RD PARTY REJECTS"  Style="{StaticResource PDSGroupBoxStyle}" Margin="5">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -17,7 +18,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <TextBlock FontSize="18" Margin="5">MANAGE 3RD PARTY REJECTS</TextBlock>
+        <TextBlock  Margin="5"></TextBlock>
         
       
          <Grid Grid.Row="1" Margin="5">
@@ -49,4 +50,5 @@
         </StackPanel>
 
     </Grid>
+    </GroupBox>
 </Page>

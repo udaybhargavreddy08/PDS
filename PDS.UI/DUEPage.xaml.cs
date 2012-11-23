@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PDS.DomainModel;
+using PDS.BusinessLayer;
 
 namespace PDS.UI
 {
@@ -20,10 +21,16 @@ namespace PDS.UI
     /// </summary>
     public partial class DUEPage : Page
     {
+        public Fill SelectedFill { get; set; }
         public DUEPage()
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(DUEPage_Loaded);
+        }
+
+        public DUEPage(Fill selectedFill) : this()
+        {
+            SelectedFill = selectedFill;
         }
 
         void DUEPage_Loaded(object sender, RoutedEventArgs e)
@@ -88,7 +95,8 @@ namespace PDS.UI
 
         private void btnApprove_Click(object sender, RoutedEventArgs e)
         {
-
+            new FillManager().ApproveDUE(SelectedFill);
+            NavigationService.GoBack();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

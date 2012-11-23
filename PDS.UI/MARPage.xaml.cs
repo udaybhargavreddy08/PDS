@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PDS.DomainModel;
+using PDS.BusinessLayer;
 
 namespace PDS.UI
 {
@@ -19,9 +21,16 @@ namespace PDS.UI
     /// </summary>
     public partial class MARPage : Page
     {
+
+        public Fill SelectedFill { get; set; }
         public MARPage()
         {
             InitializeComponent();
+        }
+
+        public MARPage(Fill selectedFill) :  this()
+        {
+            SelectedFill = selectedFill;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -31,7 +40,9 @@ namespace PDS.UI
 
         private void btnResubmit_Click(object sender, RoutedEventArgs e)
         {
+            new FillManager().ReSubmit(SelectedFill);
 
+            NavigationService.GoBack();
         }
     }
 }

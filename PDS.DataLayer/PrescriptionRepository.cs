@@ -43,11 +43,14 @@ namespace PDS.DataLayer
             Prescription prescription = new Prescription();
             using (var context = new PDSEntities())
             {
-                PDSRx pdsRx = new PDSRx();
+
+                PDSRx pdsRx = context.PDSRxes.SingleOrDefault(p=>p.ID == rxId);
                 MapPDSRxToPrescription(pdsRx,prescription);               
             }
 
             prescription.Patient = new PatientRepository().Load(prescription.Patient.Id);
+            prescription.Product = new ProductRepository().Load(prescription.Product.Id);
+            prescription.Prescriber = new PrescriberRepository().Load(prescription.Prescriber.Id);
 
             return prescription;
         }
@@ -55,9 +58,9 @@ namespace PDS.DataLayer
         private void MapPDSRxToPrescription(PDSRx pdsRx, Prescription prescription)
         {
             prescription.Id = pdsRx.ID;
-            prescription.Patient = new Patient { Id = pdsRx.ID };
-            prescription.Prescriber = new Prescriber { Id = pdsRx.ID };
-            prescription.Product = new Product { Id = pdsRx.ID };
+            prescription.Patient = new Patient { Id = pdsRx.PatientID};
+            prescription.Prescriber = new Prescriber { Id = pdsRx.PrescriberID};
+            prescription.Product = new Product { Id = pdsRx.ProductID };
             prescription.SIG = pdsRx.SIG;
             prescription.WrittenDate = pdsRx.WrittenDate.HasValue ? pdsRx.WrittenDate.Value : DateTime.Now;
             prescription.RefillsAllowed = pdsRx.RefillsAllowed;

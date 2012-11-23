@@ -49,6 +49,8 @@ namespace PDS.DomainModel
         }
 
 
+        public int DrugClass { get; set; }
+
         
 
         public event PropertyChangedEventHandler PropertyChanged;

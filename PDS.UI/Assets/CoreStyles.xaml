@@ -1651,7 +1651,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="ListBox">
+    <Style x:Name="PDSListBoxStyle" TargetType="ListBox">
         <Setter Property="Background" Value="{StaticResource InputBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />

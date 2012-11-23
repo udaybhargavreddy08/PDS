@@ -8,16 +8,23 @@ namespace PDS.DataLayer
 {
     public class FillRepository
     {
-            public void Create(Fill fill)
+        public Fill Create(Fill fill)
             {
+                PDSFill pdsFill = null;
                 using (var context = new PDSEntities())
                 {
-                    PDSFill pdsFill = new PDSFill();
+                    pdsFill = new PDSFill();
                     MapFilltoPDSFill(fill, pdsFill);
 
                     context.AddToPDSFills(pdsFill);
                     context.SaveChanges();
                 }
+
+                if (pdsFill != null)
+                {
+                    fill.Id = pdsFill.ID;
+                }
+                return fill;
             }
 
             private void MapFilltoPDSFill(Fill fill, PDSFill pdsFill)
@@ -32,8 +39,7 @@ namespace PDS.DataLayer
                 pdsFill.WrittenQty = fill.WrittenQty;
                 pdsFill.DispensedQty = fill.DispensedQty;
                 pdsFill.IsSold = fill.IsSold;
-                pdsFill.State = (int)fill.QueueState;
-                
+                pdsFill.State = (int)fill.QueueState;               
 
             }
 
@@ -90,7 +96,7 @@ namespace PDS.DataLayer
                     var pdsFill = context.PDSFills.SingleOrDefault(p => p.ID == fill.Id);
                     if (pdsFill != null)
                     {
-                        MapPDSFilltoFill(pdsFill, fill);
+                        MapFilltoPDSFill(fill,pdsFill);
                     }
                     context.SaveChanges();
                 }
@@ -108,10 +114,10 @@ namespace PDS.DataLayer
                  var pdsQueues = new List<PDSQueue>()
                             {
                                 new PDSQueue { StateId = (int)QueueStates.DUE, Name="DUE", Code="DUE"},
-                                new PDSQueue { StateId = (int)QueueStates.ThirdPartyRejects, Name="3RD PARTY REJECTS", Count = 12, Code="MAR"},
-                                new PDSQueue { StateId = (int)QueueStates.PrintLabel, Name="PRINT LABEL", Count = 2, Code="PLABEL"},
-                                new PDSQueue { StateId = (int)QueueStates.RPHVerificaiton, Name="RPH VERIFICATION", Count = 2, Code="RPH"},
-                                new PDSQueue { StateId = (int)QueueStates.WillCall, Name="WILL CALL", Count = 2, Code="WILLCALL"}
+                                new PDSQueue { StateId = (int)QueueStates.ThirdPartyRejects, Name="3RD PARTY REJECTS", Code="MAR"},
+                                new PDSQueue { StateId = (int)QueueStates.PrintLabel, Name="PRINT LABEL", Code="PLABEL"},
+                                new PDSQueue { StateId = (int)QueueStates.RPHVerificaiton, Name="RPH VERIFICATION", Code="RPH"},
+                                new PDSQueue { StateId = (int)QueueStates.WillCall, Name="WILL CALL",  Code="WILLCALL"}
                             };
 
                  using (var context = new PDSEntities())

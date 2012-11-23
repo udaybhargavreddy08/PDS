@@ -100,6 +100,7 @@ namespace PDS.DataLayer
 
        private static void MapPDSPatientToPatient(Patient patient, PDSPatient pdsPatient)
        {
+           patient.Id = pdsPatient.ID;
            patient.FirstName = pdsPatient.FirstName;
            patient.LastName = pdsPatient.LastName;
            patient.DOB = pdsPatient.DOB;

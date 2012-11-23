@@ -39,8 +39,9 @@
             <DataGrid x:Name="dgSrchResults" IsReadOnly="True" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="NDC" Binding="{Binding Path=NDC}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Product Name" Width="*" Binding="{Binding Path=Name}"></DataGridTextColumn>
-                   
+                    <DataGridTextColumn Header="Product Name"  Binding="{Binding Path=Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Drug Class" Width="*" Binding="{Binding Path=DrugClass}"></DataGridTextColumn>
+
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
