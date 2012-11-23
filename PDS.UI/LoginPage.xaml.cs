@@ -26,7 +26,7 @@ namespace PDS.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new HomePage()); 
+           NavigationService.Navigate(new HomePage()); 
         }
         
     }
