@@ -25,34 +25,34 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Rx #:</TextBlock>
-               <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource PDSWhiteForegroundStyle}">98089808908</TextBlock>
+               <TextBlock Grid.Row="0" x:Name="txtRxNumber" Grid.Column="1" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
 
                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource RightAlignStyle}">Written Date:</TextBlock>
-              <TextBlock Grid.Row="0" Grid.Column="4"  Style="{StaticResource PDSWhiteForegroundStyle}">20/12/2012</TextBlock>
+              <TextBlock Grid.Row="0" x:Name="txtWrittenDate" Grid.Column="4"  Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
 
 
-               <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Patient Name:</TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+               <TextBlock Grid.Row="1"  Grid.Column="0" Style="{StaticResource RightAlignStyle}">Patient Name:</TextBlock>
+            <TextBlock Grid.Row="1" x:Name="txtName" Grid.Column="1" Grid.ColumnSpan="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
            
                 <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Gender:</TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
+                <TextBlock Grid.Row="2" x:Name="txtGender" Grid.Column="1"></TextBlock>
           
-                <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource RightAlignStyle}">Age:</TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource RightAlignStyle}">DOB:</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="4" x:Name="txtDOB"  Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Address:</TextBlock>
-                <TextBlock Grid.Row="3"  Grid.Column="1"  Grid.ColumnSpan="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+                <TextBlock Grid.Row="3"  Grid.Column="1"  x:Name="txtAddress" Grid.ColumnSpan="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
 
             
                 <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Drug:</TextBlock>
-                <TextBlock Grid.Row="4" Grid.Column="1"  Grid.ColumnSpan="4"  Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="1" x:Name="txtDrug" Grid.ColumnSpan="4"  Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
             
 
                 <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource RightAlignStyle}">Qty:</TextBlock>
-                 <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+                 <TextBlock Grid.Row="5" Grid.Column="1" x:Name="txtQty" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
 
                 <TextBlock Grid.Row="5" Grid.Column="3" Style="{StaticResource RightAlignStyle}">Refills:</TextBlock>
-                 <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
+                 <TextBlock Grid.Row="5" Grid.Column="4" x:Name="txtRefills" Style="{StaticResource PDSWhiteForegroundStyle}"></TextBlock>
 
               
             </Grid>

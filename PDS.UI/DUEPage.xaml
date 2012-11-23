@@ -38,7 +38,7 @@
        
         <TextBlock FontSize="18"></TextBlock>
 
-        <local:RxInformationControl Grid.Row="1"  Margin="5"></local:RxInformationControl>
+        <local:RxInformationControl x:Name="rxInfoControl" Grid.Row="1"  Margin="5"></local:RxInformationControl>
             
                
          <GroupBox Header="DUE CONFLICTS" Grid.Row="2" Margin="5">

@@ -43,7 +43,10 @@ namespace PDS.UI
                 new DUEConflict{ Name = "High Dose" , Serverity = "High" , Description = "High dose, has potential for patient harm"},
             };
 
+
             dgConflicts.ItemsSource = dueConflicts;
+
+            rxInfoControl.SelectedFill = SelectedFill;
 
         }
 

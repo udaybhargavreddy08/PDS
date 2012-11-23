@@ -26,7 +26,16 @@ namespace PDS.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           NavigationService.Navigate(new HomePage()); 
+            if (txtUserName.Text.Equals("uday", StringComparison.InvariantCultureIgnoreCase) && 
+                txtPassword.Password.Equals("uday"))
+            {
+                NavigationService.Navigate(new HomePage());
+            }
+            else
+            {
+                txtErrorMessage.Text = "Invalid user name or password";
+
+            }
         }
         
     }

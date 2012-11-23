@@ -26,6 +26,12 @@ namespace PDS.UI
         public MARPage()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(MARPage_Loaded);
+        }
+
+        void MARPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            rxInfoControl.SelectedFill = SelectedFill;
         }
 
         public MARPage(Fill selectedFill) :  this()

@@ -29,7 +29,7 @@
                         <RowDefinition></RowDefinition>
                         
                     </Grid.RowDefinitions>
-                <local:RxInformationControl  Grid.Row="0"></local:RxInformationControl>
+                <local:RxInformationControl x:Name="rxInfoControl"  Grid.Row="0"></local:RxInformationControl>
                     <GroupBox Grid.Row="1"  Header="REJECTION REASONS" Margin="5">
                         
                     </GroupBox>

@@ -31,6 +31,7 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <TextBlock FontSize="18" TextAlignment="Center" Margin="5">LOGIN</TextBlock>
@@ -43,7 +44,8 @@
                 <Button  Grid.Row="5" Grid.Column="0" 
                          Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
                          Click="Button_Click">Login</Button>
-                
+
+                <TextBlock x:Name="txtErrorMessage" Foreground="Red" FontSize="14"   Grid.Row="6" Grid.Column="0" ></TextBlock>
             </Grid>
 
         </Border>
