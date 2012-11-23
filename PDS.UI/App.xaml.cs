@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 
 namespace PDS.UI
 {
@@ -21,6 +22,9 @@ namespace PDS.UI
             EventManager.RegisterClassHandler(typeof(DatePicker),
                 DatePicker.LoadedEvent,
                 new RoutedEventHandler(DatePicker_Loaded));
+
+            Application.Current.DispatcherUnhandledException += new System.Windows.Threading.DispatcherUnhandledExceptionEventHandler(DispatcherUnhandledExceptionEventHandler);
+
         }
 
         public static T GetChildOfType<T>(DependencyObject depObj) where T : DependencyObject
@@ -49,6 +53,20 @@ namespace PDS.UI
             if (wm == null) return;
 
             wm.Content = "MM/DD/YY";
+        }
+
+        private static void DispatcherUnhandledExceptionEventHandler(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            ExceptionWindow dlg = new ExceptionWindow(e.Exception);
+            // Configure the dialog box
+            
+            dlg.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            // Open the dialog box modally 
+            dlg.ShowDialog();
+
+        
+
+            e.Handled = true;
         }
     }
 }
