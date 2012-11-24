@@ -23,8 +23,14 @@ namespace PDS.UI
         {
             InitializeComponent();
 
+            Uri iconUri = new Uri("pack://application:,,,/Images/pill.ico", UriKind.RelativeOrAbsolute);
+            this.Icon = BitmapFrame.Create(iconUri);
+
             LoginPage loginPage = new LoginPage();
             mainFrame.Navigate(loginPage);
+
+
+            
         }
 
         private void btnPatient_Click(object sender, RoutedEventArgs e)

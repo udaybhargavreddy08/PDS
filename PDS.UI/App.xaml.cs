@@ -23,6 +23,8 @@ namespace PDS.UI
                 DatePicker.LoadedEvent,
                 new RoutedEventHandler(DatePicker_Loaded));
 
+            
+
             Application.Current.DispatcherUnhandledException += new System.Windows.Threading.DispatcherUnhandledExceptionEventHandler(DispatcherUnhandledExceptionEventHandler);
 
         }

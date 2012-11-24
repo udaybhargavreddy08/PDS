@@ -249,8 +249,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExternalDlls\Elysium.Theme.dll" />
-    <Resource Include="Images\user.png" />
+    <Content Include="Images\pill.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\pill.png" />
+    <Resource Include="Images\user.png" />
+    <Resource Include="Images\blackpill.png" />
     <Resource Include="Images\metrosearch.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
