@@ -41,7 +41,7 @@
                 <TextBlock Grid.Row="3" Grid.Column="0"  Style="{StaticResource LeftAlignStyle}">PASSWORD</TextBlock>
                 <PasswordBox Grid.Row="4" Grid.Column="0" x:Name="txtPassword"    Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}" ></PasswordBox>
 
-                <Button  Grid.Row="5" Grid.Column="0" 
+                <Button  Grid.Row="5" Grid.Column="0" IsDefault="True"
                          Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
                          Click="Button_Click">Login</Button>
 

@@ -32,8 +32,15 @@ namespace PDS.UI
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(PrescriberSearchWindow_Loaded);
 
+            dgSrchResults.MouseDoubleClick += new MouseButtonEventHandler(dgSrchResults_MouseDoubleClick);
             txtFirstName.Text = firstName;
             txtLastName.Text = lastName;
+        }
+
+        void dgSrchResults_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProcessSelect();
+
         }
 
 
@@ -45,13 +52,18 @@ namespace PDS.UI
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
+            ProcessSelect();           
+        }
+
+        private void ProcessSelect()
+        {
             if (dgSrchResults.SelectedItem != null)
             {
                 SelectedPrescriber = dgSrchResults.SelectedItem as Prescriber;
                 SearchDialogResult = SearchDialogResult.Select;
-            }
 
-            Close();
+                Close();
+            }
         }
 
         private void btnProductSearch_Click(object sender, RoutedEventArgs e)

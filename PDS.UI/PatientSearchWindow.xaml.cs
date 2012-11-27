@@ -51,13 +51,18 @@ namespace PDS.UI
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
+            ProcessSelect();
+        }
+
+        private void ProcessSelect()
+        {
             if (dgSrchResults.SelectedItem != null)
             {
                 SelectedPatient = dgSrchResults.SelectedItem as Patient;
                 SearchDialogResult = SearchDialogResult.Select;
-            }
 
-            Close();
+                Close();
+            }
         }
 
         private void btnPatientSearch_Click(object sender, RoutedEventArgs e)
@@ -77,6 +82,11 @@ namespace PDS.UI
             //                                    };
 
             dgSrchResults.ItemsSource = searchResults;
+        }
+
+        private void dgSrchResults_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProcessSelect();
         }
     }
 }

@@ -24,6 +24,27 @@ namespace PDS.UI
         public RPHVerificationPage()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(RPHVerificationPage_Loaded);
+        }
+
+        void RPHVerificationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtName.Text = string.Format("{0} {1}", SelectedFill.Prescription.Patient.FirstName.Trim(), SelectedFill.Prescription.Patient.LastName.Trim());
+            txtAddress.Text = SelectedFill.Prescription.Patient.Address.ToString();
+            txtDOB.Text = SelectedFill.Prescription.Patient.DOB.ToShortDateString();
+            txtGender.Text = SelectedFill.Prescription.Patient.Gender;
+
+            txtDrug.Text = SelectedFill.Prescription.Product.Name;
+            txtNDC.Text = SelectedFill.Prescription.Product.NDC;
+
+            txtPrescriberName.Text = string.Format("{0} {1}", SelectedFill.Prescription.Prescriber.FirstName.Trim(), SelectedFill.Prescription.Prescriber.LastName.Trim());
+            txtNPI.Text = SelectedFill.Prescription.Prescriber.NPI;
+            txtDEA.Text = SelectedFill.Prescription.Prescriber.DEA;
+
+            txtRxID.Text = SelectedFill.Prescription.Id.ToString();
+            txtWrittenDate.Text = SelectedFill.Prescription.WrittenDate.ToShortDateString();
+            txtQty.Text = SelectedFill.WrittenQty.ToString();
+            txtSig.Text = SelectedFill.Prescription.SIG;
         }
 
         public Fill SelectedFill { get; set; }

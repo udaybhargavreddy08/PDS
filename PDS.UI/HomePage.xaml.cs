@@ -142,6 +142,7 @@ namespace PDS.UI
                     }
                     else if (selectedQueue == QueueStates.PrintLabel)
                     {
+                        PrintLabel(selectedFill);
                         new FillManager().PrintLabel(selectedFill);
                         UpdateQueueInfo((int)QueueStates.PrintLabel);
                     }
@@ -154,8 +155,36 @@ namespace PDS.UI
                         new FillManager().Sell(selectedFill);
                         UpdateQueueInfo((int)QueueStates.WillCall);
                     }
+                  
                    
                 }
+            }
+        }
+
+        private static void PrintLabel(Fill selectedFill)
+        {
+
+            var printControl = new PrintLabel(selectedFill);
+            printControl.Width = 8.27 * 96;
+            printControl.Height = 11.69 * 96;
+
+
+            //Create a fixed Document and Print the document
+            FixedDocument fixedDoc = new FixedDocument();
+            PageContent pageContent = new PageContent();
+            FixedPage fixedPage = new FixedPage();
+            fixedPage.Height = 11.69 * 96;
+            fixedPage.Width = 8.27 * 96;
+
+            fixedPage.Children.Add(printControl);
+            ((System.Windows.Markup.IAddChild)pageContent).AddChild(fixedPage);
+            fixedDoc.Pages.Add(pageContent);
+
+            PrintDialog dialog = new PrintDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                //dialog.PrintVisual(_PrintCanvas, "My Canvas");
+                dialog.PrintDocument(fixedDoc.DocumentPaginator, "Print label");
             }
         }
 

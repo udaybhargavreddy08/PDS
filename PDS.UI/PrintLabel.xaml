@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="PDS.UI.PrintLabel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+   
+    <Border Margin="10" BorderBrush="Black" BorderThickness="1">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        
+        <Image Margin="10" Source="Images/code93.gif"></Image>
+
+            <Border Margin="10" Grid.Row="1" BorderBrush="Black" BorderThickness="1"  >
+          <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+                    <TextBlock FontWeight="Bold" FontSize="18" Grid.Row="0" Grid.Column="0">PATIENT</TextBlock>
+                    <TextBlock FontWeight="Bold" FontSize="18" Grid.Row="0" Grid.Column="1">PRODUCT</TextBlock>
+                    <TextBlock FontWeight="Bold" FontSize="18" Grid.Row="0" Grid.Column="2">PRESCRIBER</TextBlock>
+               
+                    <TextBlock  Grid.Row="1" Grid.Column="0" x:Name="txtPatientDetails"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" x:Name="txtProduct"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" x:Name="txtPrescriber"></TextBlock>
+
+
+
+
+                </Grid>
+            </Border>
+            <TextBlock Grid.Row="2" FontWeight="Bold" FontSize="22">Patient Education</TextBlock>
+            <TextBlock Grid.Row="3"  TextWrapping="Wrap" FontSize="14">
+            • Instruct patients to take medication around the clock and to finish the drug completely as directed, even if feeling better. 
+              Advise patients that sharing of this medication may be dangerous.
+                
+            • Pedi: Teach parents or caregivers to calculate and measure doses accurately. Reinforce importance of using measuring device 
+                supplied by pharmacy or with product, not household items.
+                
+            • Review use and preparation of tablets for oral suspension (DisperMox).
+                
+            • Advise patient to report the signs of superinfection (furry overgrowth on the tongue, vaginal itching or discharge,
+                loose or foul-smelling stools) and allergy.
+            • Instruct patient to notify health care professional immediately if diarrhea, abdominal cramping, fever, or bloody stools occur 
+                and not to treat with antidiarrheals without consulting health care professional.
+                
+            • Instruct the patient to notify health care professional if symptoms do not improve.
+                
+            • Teach patients with a history of rheumatic heart disease or valve replacement the importance of using antimicrobial prophylaxis
+                before invasive medical or dental procedures.
+                
+            • Instruct female patients taking oral contraceptives to use an alternate or additional nonhormonal method of contraception during therapy 
+                with amoxicillin and until next menstrual period.
+            
+        </TextBlock>
+        
+        
+    </Grid>
+    </Border>
+</UserControl>

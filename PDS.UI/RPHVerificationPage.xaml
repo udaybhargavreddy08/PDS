@@ -32,11 +32,12 @@
             <GroupBox Header="Patient Information" Grid.Row="0" Grid.Column="0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -45,15 +46,15 @@
                     
                     <TextBlock Grid.Row="0" Grid.Column="0">Name</TextBlock>
                     <TextBlock Grid.Row="1" Grid.Column="0">DOB</TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="0">Age</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0">Address</TextBlock>
                     <TextBlock Grid.Row="3" Grid.Column="0">Gender</TextBlock>
 
-                    <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="1"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtName" Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtDOB" Grid.Row="1" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtAddress" Grid.Row="2" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtGender" Grid.Row="3" Grid.Column="1"></TextBlock>
 
-                    <ToggleButton  Grid.Row="4" Grid.Column="1" x:Name="patientVerify"
+                    <ToggleButton  Grid.Row="5" Grid.Column="1" x:Name="patientVerify"
                               Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
                                IsChecked="{Binding ElementName=thisControl,Path=IsPatientInfoVerified}" >Verify</ToggleButton>
                 </Grid>
@@ -79,11 +80,11 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0">Drug Name</TextBlock>
-                        <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                        <TextBlock Height="Auto" Grid.Row="0" Grid.Column="0">Drug Name:</TextBlock>
+                        <TextBlock Height="Auto" x:Name="txtDrug" Grid.Row="0" Grid.Column="1"></TextBlock>
 
-                        <TextBlock Grid.Row="1" Grid.Column="0">NDC</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="1"></TextBlock>
+                        <TextBlock Height="Auto" Grid.Row="1" Grid.Column="0">NDC</TextBlock>
+                        <TextBlock  Height="Auto" x:Name="txtNDC" Grid.Row="1" Grid.Column="1"></TextBlock>
                     </Grid>
                     
                     <Image Grid.Row="0" Grid.Column="1" Source="./Images/amoxicillin875mgtab-ran.jpg" ></Image>
@@ -96,11 +97,11 @@
             <GroupBox Header="Prescriber Information" Grid.Row="1" Grid.Column="0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -112,10 +113,10 @@
                     <TextBlock Grid.Row="2" Grid.Column="0">NPI</TextBlock>
                     <TextBlock Grid.Row="3" Grid.Column="0">Address</TextBlock>
 
-                    <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="1"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtPrescriberName" Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtDEA" Grid.Row="1" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtNPI" Grid.Row="2" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="Address" Grid.Row="3" Grid.Column="1"></TextBlock>
 
                     <ToggleButton Grid.Row="4" Grid.Column="1" x:Name="btnPrescriberVerify"
                                    Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"
@@ -130,11 +131,22 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0">Rx#</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0">Qty</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0">Written Date</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0">SIG</TextBlock>
+
+                    <TextBlock x:Name="txtRxID" Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtQty" Grid.Row="1" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtWrittenDate" Grid.Row="2" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="txtSig" Grid.Row="3" Grid.Column="1"></TextBlock>
 
                     <ToggleButton Grid.Row="4" Grid.Column="1" x:Name="btnRxVerify" 
                             Margin="{Binding Source={x:Static metro:Parameters.Instance}, Path=BoldPadding, Mode=OneWay}"

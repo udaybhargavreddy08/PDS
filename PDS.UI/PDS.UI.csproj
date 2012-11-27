@@ -67,6 +67,9 @@
     <Compile Include="PrescriberSearchWindow.xaml.cs">
       <DependentUpon>PrescriberSearchWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrintLabel.xaml.cs">
+      <DependentUpon>PrintLabel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductSearchWindow.xaml.cs">
       <DependentUpon>ProductSearchWindow.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PrescriberSearchWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PrintLabel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -249,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExternalDlls\Elysium.Theme.dll" />
+    <Resource Include="Images\code93.gif" />
     <Content Include="Images\pill.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
